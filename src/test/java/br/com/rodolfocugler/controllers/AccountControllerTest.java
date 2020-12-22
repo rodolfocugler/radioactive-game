@@ -1,4 +1,4 @@
-package br.com.rodolfocugler.services;
+package br.com.rodolfocugler.controllers;
 
 import br.com.rodolfocugler.domains.Account;
 import br.com.rodolfocugler.dtos.UserDTO;
@@ -25,7 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
-class AccountServiceTest {
+class AccountControllerTest {
   @Autowired
   private MockMvc mockMvc;
 
