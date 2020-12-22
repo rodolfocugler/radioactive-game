@@ -27,7 +27,7 @@ public class Account {
   private String number;
 
   @ManyToOne
-  private Group group;
+  private AccountGroup accountGroup;
 
   @ManyToOne
   private Environment environment;

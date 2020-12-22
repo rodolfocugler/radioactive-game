@@ -11,7 +11,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Group {
+public class AccountGroup {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,6 +20,6 @@ public class Group {
   @Column(nullable = false)
   private String name;
 
-  @OneToMany(mappedBy = "group")
+  @OneToMany(mappedBy = "accountGroup")
   private List<Account> accounts;
 }

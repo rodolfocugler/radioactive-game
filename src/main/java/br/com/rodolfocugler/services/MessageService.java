@@ -1,6 +1,6 @@
 package br.com.rodolfocugler.services;
 
-import br.com.rodolfocugler.domains.Message;
+import br.com.rodolfocugler.domains.ChatMessage;
 import br.com.rodolfocugler.exceptions.DataNotFoundException;
 import br.com.rodolfocugler.repositories.MessageRepository;
 import org.springframework.stereotype.Service;
@@ -16,23 +16,23 @@ public class MessageService {
 
   private final MessageRepository messageRepository;
 
-  public Message get(long id) throws DataNotFoundException {
+  public ChatMessage get(long id) throws DataNotFoundException {
     return messageRepository
             .findById(id)
             .orElseThrow(() -> new DataNotFoundException("Message was not found."));
   }
 
-  public List<Message> get() {
+  public List<ChatMessage> get() {
     return messageRepository.findAll();
   }
 
-  public Message add(Message message) {
-    messageRepository.save(message);
-    return message;
+  public ChatMessage add(ChatMessage chatMessage) {
+    messageRepository.save(chatMessage);
+    return chatMessage;
   }
 
   public void delete(long id) throws DataNotFoundException {
-    Message message = get(id);
-    messageRepository.delete(message);
+    ChatMessage chatMessage = get(id);
+    messageRepository.delete(chatMessage);
   }
 }

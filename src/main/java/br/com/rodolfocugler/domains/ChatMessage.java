@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Message {
+public class ChatMessage {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)

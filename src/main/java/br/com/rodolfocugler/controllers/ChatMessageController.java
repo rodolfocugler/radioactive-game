@@ -10,8 +10,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/chatMessages")
-public class MessageController {
-  public MessageController(MessageService messageService) {
+public class ChatMessageController {
+  public ChatMessageController(MessageService messageService) {
     this.messageService = messageService;
   }
 

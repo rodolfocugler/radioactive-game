@@ -30,7 +30,7 @@ public class Environment {
   private List<Question> questions;
 
   @OneToMany(mappedBy = "environment")
-  private List<Message> messages;
+  private List<ChatMessage> chatMessages;
 
   @OneToMany(mappedBy = "environment")
   private List<Tool> tools;

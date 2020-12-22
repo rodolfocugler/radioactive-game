@@ -2,44 +2,44 @@ package br.com.rodolfocugler.controllers;
 
 import br.com.rodolfocugler.domains.AccountGroup;
 import br.com.rodolfocugler.exceptions.DataNotFoundException;
-import br.com.rodolfocugler.services.GroupService;
+import br.com.rodolfocugler.services.AccountGroupService;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/groups")
-public class GroupController {
-  public GroupController(GroupService groupService) {
-    this.groupService = groupService;
+@RequestMapping("/api/accountGroups")
+public class AccountGroupController {
+  public AccountGroupController(AccountGroupService accountGroupService) {
+    this.accountGroupService = accountGroupService;
   }
 
-  private final GroupService groupService;
+  private final AccountGroupService accountGroupService;
 
   @GetMapping("/{id}")
   public AccountGroup get(@PathVariable long id) throws DataNotFoundException {
-    return groupService.get(id);
+    return accountGroupService.get(id);
   }
 
   @GetMapping
   public List<AccountGroup> get() {
-    return groupService.get();
+    return accountGroupService.get();
   }
 
   @PostMapping
   public AccountGroup add(@RequestBody @Validated AccountGroup accountGroup) {
-    return groupService.add(accountGroup);
+    return accountGroupService.add(accountGroup);
   }
 
   @DeleteMapping("/{id}")
   public void delete(@PathVariable long id) throws DataNotFoundException {
-    groupService.delete(id);
+    accountGroupService.delete(id);
   }
 
   @PutMapping("/{id}")
   public void edit(@PathVariable long id, @RequestBody @Validated AccountGroup newAccountGroup)
           throws DataNotFoundException {
-    groupService.edit(id, newAccountGroup);
+    accountGroupService.edit(id, newAccountGroup);
   }
 }
