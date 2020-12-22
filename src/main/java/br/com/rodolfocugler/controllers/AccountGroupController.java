@@ -1,6 +1,6 @@
 package br.com.rodolfocugler.controllers;
 
-import br.com.rodolfocugler.domains.Group;
+import br.com.rodolfocugler.domains.AccountGroup;
 import br.com.rodolfocugler.exceptions.DataNotFoundException;
 import br.com.rodolfocugler.services.GroupService;
 import org.springframework.validation.annotation.Validated;
@@ -18,18 +18,18 @@ public class GroupController {
   private final GroupService groupService;
 
   @GetMapping("/{id}")
-  public Group get(@PathVariable long id) throws DataNotFoundException {
+  public AccountGroup get(@PathVariable long id) throws DataNotFoundException {
     return groupService.get(id);
   }
 
   @GetMapping
-  public List<Group> get() {
+  public List<AccountGroup> get() {
     return groupService.get();
   }
 
   @PostMapping
-  public Group add(@RequestBody @Validated Group group) {
-    return groupService.add(group);
+  public AccountGroup add(@RequestBody @Validated AccountGroup accountGroup) {
+    return groupService.add(accountGroup);
   }
 
   @DeleteMapping("/{id}")
@@ -38,8 +38,8 @@ public class GroupController {
   }
 
   @PutMapping("/{id}")
-  public void edit(@PathVariable long id, @RequestBody @Validated Group newGroup)
+  public void edit(@PathVariable long id, @RequestBody @Validated AccountGroup newAccountGroup)
           throws DataNotFoundException {
-    groupService.edit(id, newGroup);
+    groupService.edit(id, newAccountGroup);
   }
 }

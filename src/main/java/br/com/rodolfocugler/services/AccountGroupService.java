@@ -1,6 +1,6 @@
 package br.com.rodolfocugler.services;
 
-import br.com.rodolfocugler.domains.Group;
+import br.com.rodolfocugler.domains.AccountGroup;
 import br.com.rodolfocugler.exceptions.DataNotFoundException;
 import br.com.rodolfocugler.repositories.GroupRepository;
 import org.springframework.stereotype.Service;
@@ -16,29 +16,29 @@ public class GroupService {
 
   private final GroupRepository groupRepository;
 
-  public Group get(long id) throws DataNotFoundException {
+  public AccountGroup get(long id) throws DataNotFoundException {
     return groupRepository
             .findById(id)
             .orElseThrow(() -> new DataNotFoundException("Group was not found."));
   }
 
-  public List<Group> get() {
+  public List<AccountGroup> get() {
     return groupRepository.findAll();
   }
 
-  public Group add(Group group) {
-    groupRepository.save(group);
-    return group;
+  public AccountGroup add(AccountGroup accountGroup) {
+    groupRepository.save(accountGroup);
+    return accountGroup;
   }
 
-  public Group edit(long id, Group newGroup) throws DataNotFoundException {
-    Group group = get(id);
-    group.setName(newGroup.getName());
-    return groupRepository.save(group);
+  public AccountGroup edit(long id, AccountGroup newAccountGroup) throws DataNotFoundException {
+    AccountGroup accountGroup = get(id);
+    accountGroup.setName(newAccountGroup.getName());
+    return groupRepository.save(accountGroup);
   }
 
   public void delete(long id) throws DataNotFoundException {
-    Group group = get(id);
-    groupRepository.delete(group);
+    AccountGroup accountGroup = get(id);
+    groupRepository.delete(accountGroup);
   }
 }

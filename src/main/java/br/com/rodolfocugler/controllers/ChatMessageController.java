@@ -1,6 +1,6 @@
 package br.com.rodolfocugler.controllers;
 
-import br.com.rodolfocugler.domains.Message;
+import br.com.rodolfocugler.domains.ChatMessage;
 import br.com.rodolfocugler.exceptions.DataNotFoundException;
 import br.com.rodolfocugler.services.MessageService;
 import org.springframework.validation.annotation.Validated;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/messages")
+@RequestMapping("/api/chatMessages")
 public class MessageController {
   public MessageController(MessageService messageService) {
     this.messageService = messageService;
@@ -18,18 +18,18 @@ public class MessageController {
   private final MessageService messageService;
 
   @GetMapping("/{id}")
-  public Message get(@PathVariable long id) throws DataNotFoundException {
+  public ChatMessage get(@PathVariable long id) throws DataNotFoundException {
     return messageService.get(id);
   }
 
   @GetMapping
-  public List<Message> get() {
+  public List<ChatMessage> get() {
     return messageService.get();
   }
 
   @PostMapping
-  public Message add(@RequestBody @Validated Message message) {
-    return messageService.add(message);
+  public ChatMessage add(@RequestBody @Validated ChatMessage chatMessage) {
+    return messageService.add(chatMessage);
   }
 
   @DeleteMapping("/{id}")
