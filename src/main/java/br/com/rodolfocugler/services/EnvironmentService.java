@@ -34,6 +34,7 @@ public class EnvironmentService {
   public Environment edit(long id, Environment newEnvironment) throws DataNotFoundException {
     Environment environment = get(id);
     environment.setName(newEnvironment.getName());
+    environment.setIcon(newEnvironment.getIcon());
     environment.setDescription(newEnvironment.getDescription());
     return environmentRepository.save(environment);
   }

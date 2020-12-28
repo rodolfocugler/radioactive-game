@@ -23,6 +23,9 @@ public class Environment {
   @Column(nullable = false)
   private String description;
 
+  @Column(nullable = false)
+  private String icon;
+
   @OneToMany(mappedBy = "environment")
   private List<Account> accounts;
 
