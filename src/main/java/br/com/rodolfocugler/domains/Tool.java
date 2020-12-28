@@ -1,5 +1,6 @@
 package br.com.rodolfocugler.domains;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -20,5 +21,6 @@ public class Tool {
   private String description;
 
   @ManyToOne
+  @JsonBackReference
   private Environment environment;
 }

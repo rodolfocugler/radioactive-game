@@ -1,5 +1,6 @@
 package br.com.rodolfocugler.domains;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -21,5 +22,6 @@ public class AccountGroup {
   private String name;
 
   @OneToMany(mappedBy = "accountGroup")
+  @JsonManagedReference
   private List<Account> accounts;
 }

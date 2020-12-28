@@ -1,5 +1,7 @@
 package br.com.rodolfocugler.domains;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -21,8 +23,10 @@ public class Question {
   private String description;
 
   @ManyToOne
+  @JsonBackReference
   private Environment environment;
 
   @OneToMany(mappedBy = "question")
+  @JsonManagedReference
   private List<Response> responses;
 }

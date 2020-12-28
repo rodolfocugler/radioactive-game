@@ -1,5 +1,6 @@
 package br.com.rodolfocugler.domains;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -27,14 +28,18 @@ public class Environment {
   private String icon;
 
   @OneToMany(mappedBy = "environment")
+  @JsonManagedReference
   private List<Account> accounts;
 
   @OneToMany(mappedBy = "environment")
+  @JsonManagedReference
   private List<Question> questions;
 
   @OneToMany(mappedBy = "environment")
+  @JsonManagedReference
   private List<ChatMessage> chatMessages;
 
   @OneToMany(mappedBy = "environment")
+  @JsonManagedReference
   private List<Tool> tools;
 }

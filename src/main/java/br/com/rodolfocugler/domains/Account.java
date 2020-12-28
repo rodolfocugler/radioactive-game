@@ -1,5 +1,7 @@
 package br.com.rodolfocugler.domains;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -27,11 +29,14 @@ public class Account {
   private String number;
 
   @ManyToOne
+  @JsonBackReference
   private AccountGroup accountGroup;
 
   @ManyToOne
+  @JsonBackReference
   private Environment environment;
 
   @OneToMany(mappedBy = "account")
+  @JsonManagedReference
   private List<Response> responses;
 }
