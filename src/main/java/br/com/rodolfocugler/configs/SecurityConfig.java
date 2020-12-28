@@ -15,6 +15,7 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+import static br.com.rodolfocugler.configs.AuthenticationConfig.HEADER_STRING;
 import static br.com.rodolfocugler.configs.AuthenticationConfig.SIGN_UP_URL;
 
 @Configuration
@@ -50,6 +51,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   @Bean
   CorsConfigurationSource corsConfigurationSource() {
     final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+    CorsConfiguration configuration = new CorsConfiguration().applyPermitDefaultValues();
+    configuration.addAllowedHeader(HEADER_STRING);
     source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
     return source;
   }
