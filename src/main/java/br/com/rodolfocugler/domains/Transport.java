@@ -1,5 +1,6 @@
 package br.com.rodolfocugler.domains;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.persistence.*;

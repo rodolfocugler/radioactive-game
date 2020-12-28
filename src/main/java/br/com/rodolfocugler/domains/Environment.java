@@ -1,5 +1,6 @@
 package br.com.rodolfocugler.domains;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
@@ -28,18 +29,18 @@ public class Environment {
   private String icon;
 
   @OneToMany(mappedBy = "environment")
-  @JsonManagedReference
+  @JsonIgnoreProperties("environment")
   private List<Account> accounts;
 
   @OneToMany(mappedBy = "environment")
-  @JsonManagedReference
+  @JsonIgnoreProperties("environment")
   private List<Question> questions;
 
   @OneToMany(mappedBy = "environment")
-  @JsonManagedReference
+  @JsonIgnoreProperties("environment")
   private List<ChatMessage> chatMessages;
 
   @OneToMany(mappedBy = "environment")
-  @JsonManagedReference
+  @JsonIgnoreProperties("environment")
   private List<Tool> tools;
 }

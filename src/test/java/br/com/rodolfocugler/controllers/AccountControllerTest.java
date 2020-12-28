@@ -18,8 +18,7 @@ import java.util.List;
 import static br.com.rodolfocugler.configs.AuthenticationConfig.HEADER_STRING;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
@@ -52,7 +51,7 @@ class AccountControllerTest {
   }
 
   @Test
-  public void shouldReturnOneAccountAfterSaveOneAccount() throws Exception {
+  public void shouldReturnOneAccountAfterSaveAndEditOneAccount() throws Exception {
     Account account = Account.builder()
             .email("email@email.com")
             .name("name")
@@ -63,17 +62,32 @@ class AccountControllerTest {
 
     String token = getToken(account);
 
-    String response = mockMvc.perform(get(urlPath)
+    List<Account> accounts = getAccounts(token);
+
+    assertEquals(1, accounts.size());
+    assertEquals(account.getEmail(), accounts.get(0).getEmail());
+    assertEquals(account.getName(), accounts.get(0).getName());
+  }
+
+  //@Test
+  public void shouldReturnOneAccountAfterSaveOneAccount() throws Exception {
+    Account account = Account.builder()
+            .email("email2@email2.com")
+            .name("name2")
+            .number("123456")
+            .build();
+
+    String token = getToken();
+
+    mockMvc.perform(put("$urlPath/1").contentType(APPLICATION_JSON_VALUE)
+            .content(mapper.writeValueAsString(account))
             .header(HEADER_STRING, token))
             .andExpect(status().isOk())
             .andReturn()
             .getResponse()
             .getContentAsString();
 
-    CollectionType typeReference =
-            TypeFactory.defaultInstance().constructCollectionType(List.class, Account.class);
-
-    List<Account> accounts = mapper.readValue(response, typeReference);
+    List<Account> accounts = getAccounts(token);
 
     assertEquals(1, accounts.size());
     assertEquals(account.getEmail(), accounts.get(0).getEmail());
@@ -113,10 +127,24 @@ class AccountControllerTest {
     return token;
   }
 
-
   private ResultActions addAccount(Account account) throws Exception {
     return mockMvc.perform(post(urlPath)
             .contentType(APPLICATION_JSON_VALUE)
-            .content(mapper.writeValueAsString(account)));
+            .content(mapper.writeValueAsString(account)))
+            .andExpect(status().isOk());
+  }
+
+  private List<Account> getAccounts(String token) throws Exception {
+    String response = mockMvc.perform(get(urlPath)
+            .header(HEADER_STRING, token))
+            .andExpect(status().isOk())
+            .andReturn()
+            .getResponse()
+            .getContentAsString();
+
+    CollectionType typeReference =
+            TypeFactory.defaultInstance().constructCollectionType(List.class, Account.class);
+
+    return mapper.readValue(response, typeReference);
   }
 }
