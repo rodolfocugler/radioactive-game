@@ -3,6 +3,8 @@ package br.com.rodolfocugler.controllers;
 import br.com.rodolfocugler.domains.Environment;
 import br.com.rodolfocugler.exceptions.DataNotFoundException;
 import br.com.rodolfocugler.services.EnvironmentService;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,6 +22,14 @@ public class EnvironmentController {
   @GetMapping("/{id}")
   public Environment get(@PathVariable long id) throws DataNotFoundException {
     return environmentService.get(id);
+  }
+
+  @GetMapping("/getWithUserResponses/{id}")
+  public Environment getWithUserResponses(@RequestHeader("Authorization") String authorization,
+                                          @PathVariable long id) throws DataNotFoundException {
+    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    long userId = Long.parseLong(authentication.getPrincipal().toString());
+    return environmentService.getWithUserResponses(id, userId);
   }
 
   @GetMapping

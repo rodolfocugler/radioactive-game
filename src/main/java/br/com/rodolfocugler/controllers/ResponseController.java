@@ -1,8 +1,11 @@
 package br.com.rodolfocugler.controllers;
 
+import br.com.rodolfocugler.domains.Account;
 import br.com.rodolfocugler.domains.Response;
 import br.com.rodolfocugler.exceptions.DataNotFoundException;
 import br.com.rodolfocugler.services.ResponseService;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,6 +32,9 @@ public class ResponseController {
 
   @PostMapping
   public Response add(@RequestBody @Validated Response response) {
+    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    long userId = Long.parseLong(authentication.getPrincipal().toString());
+    response.setAccount(Account.builder().id(userId).build());
     return responseService.add(response);
   }
 

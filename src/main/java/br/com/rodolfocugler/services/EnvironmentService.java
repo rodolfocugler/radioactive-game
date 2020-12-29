@@ -43,4 +43,8 @@ public class EnvironmentService {
     Environment environment = get(id);
     environmentRepository.delete(environment);
   }
+
+  public Environment getWithUserResponses(long id, long userId) {
+    return environmentRepository.findWithUserResponses(id, userId);
+  }
 }

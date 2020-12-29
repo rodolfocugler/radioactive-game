@@ -26,6 +26,6 @@ public class Question {
   private Environment environment;
 
   @OneToMany(mappedBy = "question")
-  @JsonIgnoreProperties("question")
+  @JsonIgnoreProperties(value = {"question"}, allowSetters = true)
   private List<Response> responses;
 }

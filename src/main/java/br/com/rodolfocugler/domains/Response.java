@@ -21,10 +21,10 @@ public class Response {
   private String text;
 
   @ManyToOne
-  @JsonIgnoreProperties("responses")
+  @JsonIgnoreProperties(value = {"responses"}, allowSetters = true)
   private Question question;
 
   @ManyToOne
-  @JsonIgnoreProperties("responses")
+  @JsonIgnoreProperties(value = {"responses"}, allowSetters = true)
   private Account account;
 }

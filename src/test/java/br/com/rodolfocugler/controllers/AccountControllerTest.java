@@ -1,34 +1,28 @@
 package br.com.rodolfocugler.controllers;
 
 import br.com.rodolfocugler.domains.Account;
-import br.com.rodolfocugler.dtos.UserDTO;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import br.com.rodolfocugler.domains.Environment;
 import com.fasterxml.jackson.databind.type.CollectionType;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.ResultActions;
 
 import java.util.List;
 
 import static br.com.rodolfocugler.configs.AuthenticationConfig.HEADER_STRING;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
 @AutoConfigureMockMvc
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
-class AccountControllerTest {
-  @Autowired
-  private MockMvc mockMvc;
+class AccountControllerTest extends BaseControllerTest {
 
-  private static ObjectMapper mapper = new ObjectMapper();
   private static String urlPath = "/api/accounts";
 
   @Test
@@ -43,7 +37,6 @@ class AccountControllerTest {
             .andExpect(status().isOk());
   }
 
-
   @Test
   public void shouldReturn403WhenRequestHasNoToken() throws Exception {
     mockMvc.perform(get(urlPath))
@@ -51,7 +44,7 @@ class AccountControllerTest {
   }
 
   @Test
-  public void shouldReturnOneAccountAfterSaveAndEditOneAccount() throws Exception {
+  public void shouldReturnOneAccountAfterSaveOneAccount() throws Exception {
     Account account = Account.builder()
             .email("email@email.com")
             .name("name")
@@ -69,8 +62,8 @@ class AccountControllerTest {
     assertEquals(account.getName(), accounts.get(0).getName());
   }
 
-  //@Test
-  public void shouldReturnOneAccountAfterSaveOneAccount() throws Exception {
+  @Test
+  public void shouldReturnOneAccountAfterSaveAndEditOneAccount() throws Exception {
     Account account = Account.builder()
             .email("email2@email2.com")
             .name("name2")
@@ -79,7 +72,7 @@ class AccountControllerTest {
 
     String token = getToken();
 
-    mockMvc.perform(put("$urlPath/1").contentType(APPLICATION_JSON_VALUE)
+    mockMvc.perform(put(urlPath + "/1").contentType(APPLICATION_JSON_VALUE)
             .content(mapper.writeValueAsString(account))
             .header(HEADER_STRING, token))
             .andExpect(status().isOk())
@@ -104,43 +97,9 @@ class AccountControllerTest {
             .andExpect(status().isForbidden());
   }
 
-  private String getToken() throws Exception {
-    Account account = Account.builder()
-            .email("email@email.com")
-            .name("name")
-            .number("12345")
-            .build();
-
-    addAccount(account);
-    return getToken(account);
-  }
-
-  private String getToken(Account account) throws Exception {
-    UserDTO user = UserDTO.builder().email(account.getEmail()).password(account.getNumber()).build();
-
-    String token = mockMvc.perform(post("/login").contentType(APPLICATION_JSON_VALUE)
-            .content(mapper.writeValueAsString(user)))
-            .andExpect(status().isOk())
-            .andReturn()
-            .getResponse()
-            .getHeader(HEADER_STRING);
-    return token;
-  }
-
-  private ResultActions addAccount(Account account) throws Exception {
-    return mockMvc.perform(post(urlPath)
-            .contentType(APPLICATION_JSON_VALUE)
-            .content(mapper.writeValueAsString(account)))
-            .andExpect(status().isOk());
-  }
 
   private List<Account> getAccounts(String token) throws Exception {
-    String response = mockMvc.perform(get(urlPath)
-            .header(HEADER_STRING, token))
-            .andExpect(status().isOk())
-            .andReturn()
-            .getResponse()
-            .getContentAsString();
+    String response = getBase(urlPath, token);
 
     CollectionType typeReference =
             TypeFactory.defaultInstance().constructCollectionType(List.class, Account.class);
