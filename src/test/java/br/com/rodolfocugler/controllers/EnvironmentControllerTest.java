@@ -97,6 +97,7 @@ class EnvironmentControllerTest extends BaseControllerTest {
 
     Account account = Account.builder().email("email2@email2.com").name("name2").number("12345")
             .build();
+    addAccount(account);
     String token2 = getToken(account);
     postBase(response, "/api/responses", token2);
 

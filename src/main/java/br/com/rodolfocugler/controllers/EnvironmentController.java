@@ -25,8 +25,7 @@ public class EnvironmentController {
   }
 
   @GetMapping("/getWithUserResponses/{id}")
-  public Environment getWithUserResponses(@RequestHeader("Authorization") String authorization,
-                                          @PathVariable long id) throws DataNotFoundException {
+  public Environment getWithUserResponses(@PathVariable long id) throws DataNotFoundException {
     Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
     long userId = Long.parseLong(authentication.getPrincipal().toString());
     return environmentService.getWithUserResponses(id, userId);

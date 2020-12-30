@@ -1,11 +1,13 @@
 package br.com.rodolfocugler.services;
 
 import br.com.rodolfocugler.domains.Environment;
+import br.com.rodolfocugler.domains.Response;
 import br.com.rodolfocugler.exceptions.DataNotFoundException;
 import br.com.rodolfocugler.repositories.EnvironmentRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class EnvironmentService {
@@ -44,7 +46,15 @@ public class EnvironmentService {
     environmentRepository.delete(environment);
   }
 
-  public Environment getWithUserResponses(long id, long userId) {
-    return environmentRepository.findWithUserResponses(id, userId);
+  public Environment getWithUserResponses(long id, long userId) throws DataNotFoundException {
+    Environment environment = get(id);
+    environment.getQuestions().forEach(question -> {
+      List<Response> responses = question.getResponses().stream()
+              .filter(response -> response.getAccount().getId() == userId)
+              .collect(Collectors.toList());
+      question.setResponses(responses);
+    });
+
+    return environment;
   }
 }
