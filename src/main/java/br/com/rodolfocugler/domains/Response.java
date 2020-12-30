@@ -17,7 +17,7 @@ public class Response {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id = 0;
 
-  @Column(nullable = false)
+  @Column(nullable = false, length=1024)
   private String text;
 
   @ManyToOne
