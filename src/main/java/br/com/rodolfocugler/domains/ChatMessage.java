@@ -23,4 +23,8 @@ public class ChatMessage {
   @ManyToOne
   @JsonIgnoreProperties("chatMessages")
   private Environment environment;
+
+  @ManyToOne
+  @JsonIgnoreProperties(value = {"chatMessages"}, allowSetters = true)
+  private Account account;
 }

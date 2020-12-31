@@ -38,4 +38,8 @@ public class Account {
   @OneToMany(mappedBy = "account")
   @JsonIgnoreProperties("account")
   private List<Response> responses;
+
+  @OneToMany(mappedBy = "account")
+  @JsonIgnoreProperties("account")
+  private List<ChatMessage> chatMessages;
 }
