@@ -10,5 +10,5 @@ import java.util.List;
 
 @Repository
 public interface EnvironmentRepository extends JpaRepository<Environment, Long> {
-  List<Environment> findAllOrderById();
+  List<Environment> findAllByOrderByIdAsc();
 }

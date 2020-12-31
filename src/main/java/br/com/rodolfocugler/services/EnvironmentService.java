@@ -25,7 +25,7 @@ public class EnvironmentService {
   }
 
   public List<Environment> get() {
-    return environmentRepository.findAllOrderById();
+    return environmentRepository.findAllByOrderByIdAsc();
   }
 
   public Environment add(Environment environment) {
