@@ -20,6 +20,9 @@ public class ChatMessage {
   @Column(nullable = false, length=2048)
   private String text;
 
+  @Column(nullable = false)
+  private long messageDate;
+
   @ManyToOne
   @JsonIgnoreProperties("chatMessages")
   private Environment environment;

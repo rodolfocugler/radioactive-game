@@ -36,4 +36,8 @@ public class MessageService {
     ChatMessage chatMessage = get(id);
     messageRepository.delete(chatMessage);
   }
+
+  public List<ChatMessage> getByEnvironmentId(long id) {
+    return messageRepository.findAllByEnvironment_IdOrderByMessageDate(id);
+  }
 }

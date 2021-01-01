@@ -36,8 +36,8 @@ public class Environment {
   @JsonIgnoreProperties("environment")
   private List<Question> questions;
 
+  @JsonManagedReference
   @OneToMany(mappedBy = "environment")
-  @JsonIgnoreProperties("environment")
   private List<ChatMessage> chatMessages;
 
   @OneToMany(mappedBy = "environment")

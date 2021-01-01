@@ -63,7 +63,8 @@ public class AccountService implements UserDetailsService {
       throw new UsernameNotFoundException(email);
     }
 
+    String username = account.getEmail() + ";" + account.getId() + ";" + account.getName();
 
-    return new User(account.getEmail() + ";" + account.getId(), account.getNumber(), emptyList());
+    return new User(username, account.getNumber(), emptyList());
   }
 }

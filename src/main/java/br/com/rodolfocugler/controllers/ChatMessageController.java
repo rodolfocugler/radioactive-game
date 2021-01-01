@@ -10,6 +10,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
 import java.util.List;
 
 @RestController
@@ -31,12 +33,20 @@ public class ChatMessageController {
     return messageService.get();
   }
 
+  @GetMapping("/getByEnvironmentId/{id}")
+  public List<ChatMessage> getByEnvironmentId(@PathVariable long id) {
+    return messageService.getByEnvironmentId(id);
+  }
+
   @PostMapping
   @SendTo("/topic/messages")
   public ChatMessage add(@RequestBody @Validated ChatMessage chatMessage) {
     Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
     long userId = Long.parseLong(authentication.getPrincipal().toString());
     chatMessage.setAccount(Account.builder().id(userId).build());
+    chatMessage.setMessageDate(LocalDate.now().atStartOfDay()
+            .toInstant(OffsetDateTime.now().getOffset()).toEpochMilli());
+
     return messageService.add(chatMessage);
   }
 
