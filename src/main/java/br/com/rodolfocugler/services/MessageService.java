@@ -27,6 +27,7 @@ public class MessageService {
   }
 
   public ChatMessage add(ChatMessage chatMessage) {
+    chatMessage.setText(chatMessage.getText().replace("\n", "<br/>"));
     messageRepository.save(chatMessage);
     return chatMessage;
   }
