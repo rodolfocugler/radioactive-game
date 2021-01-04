@@ -33,8 +33,8 @@ public class ResponseController {
   @PostMapping
   public Response add(@RequestBody @Validated Response response) {
     Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-    long userId = Long.parseLong(authentication.getPrincipal().toString());
-    response.setAccount(Account.builder().id(userId).build());
+    Account logged = (Account) authentication.getPrincipal();
+    response.setAccount(logged);
     return responseService.add(response);
   }
 

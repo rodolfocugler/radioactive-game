@@ -1,7 +1,11 @@
 package br.com.rodolfocugler.filters;
 
+import br.com.rodolfocugler.domains.Account;
+import br.com.rodolfocugler.domains.AccountGroup;
+import br.com.rodolfocugler.domains.Environment;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.interfaces.DecodedJWT;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -15,6 +19,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import static br.com.rodolfocugler.configs.AuthenticationConfig.*;
+import static java.lang.Long.parseLong;
 
 public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 
@@ -47,13 +52,21 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
     }
 
     try {
-      String user = JWT.require(Algorithm.HMAC512(SECRET.getBytes()))
+      DecodedJWT decodedJWT = JWT.require(Algorithm.HMAC512(SECRET.getBytes()))
               .build()
-              .verify(token.replace(TOKEN_PREFIX, ""))
-              .getSubject();
+              .verify(token.replace(TOKEN_PREFIX, ""));
 
-      if (user != null) {
-        return new UsernamePasswordAuthenticationToken(user, null, new ArrayList<>());
+      Account account = Account.builder().id(parseLong(decodedJWT.getSubject()))
+              .name(decodedJWT.getClaim("user").asString())
+              .email(decodedJWT.getAudience().get(0))
+              .environment(Environment.builder().id(decodedJWT.getClaim("environment").asLong())
+                      .build())
+              .accountGroup(AccountGroup.builder().id(decodedJWT.getClaim("group").asLong())
+                      .build())
+              .build();
+
+      if (account != null) {
+        return new UsernamePasswordAuthenticationToken(account, null, new ArrayList<>());
       }
     } catch (Exception ex) {
       return null;

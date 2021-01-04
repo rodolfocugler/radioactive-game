@@ -1,5 +1,6 @@
 package br.com.rodolfocugler.controllers;
 
+import br.com.rodolfocugler.domains.Account;
 import br.com.rodolfocugler.domains.Environment;
 import br.com.rodolfocugler.exceptions.DataNotFoundException;
 import br.com.rodolfocugler.services.EnvironmentService;
@@ -27,8 +28,8 @@ public class EnvironmentController {
   @GetMapping("/getWithUserResponses/{id}")
   public Environment getWithUserResponses(@PathVariable long id) throws DataNotFoundException {
     Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-    long userId = Long.parseLong(authentication.getPrincipal().toString());
-    return environmentService.getWithUserResponses(id, userId);
+    Account logged = (Account) authentication.getPrincipal();
+    return environmentService.getWithUserResponses(id, logged.getId());
   }
 
   @GetMapping

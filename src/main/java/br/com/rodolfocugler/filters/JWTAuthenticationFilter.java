@@ -19,6 +19,7 @@ import java.util.Date;
 
 import static br.com.rodolfocugler.configs.AuthenticationConfig.*;
 import static com.auth0.jwt.algorithms.Algorithm.HMAC512;
+import static java.lang.Long.parseLong;
 
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
   private AuthenticationManager authenticationManager;
@@ -56,11 +57,15 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     String email = claims[0];
     String id = claims[1];
     String name = claims[2];
+    String environment = claims[3];
+    String group = claims[4];
 
     String token = JWT.create()
             .withSubject(id)
             .withAudience(email)
             .withClaim("user", name)
+            .withClaim("environment", parseLong(environment))
+            .withClaim("group", parseLong(group))
             .withExpiresAt(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
             .sign(HMAC512(SECRET.getBytes()));
     res.addHeader(HEADER_STRING, TOKEN_PREFIX + token);
