@@ -36,6 +36,7 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
     UsernamePasswordAuthenticationToken authentication = getAuthentication(req);
 
     SecurityContextHolder.getContext().setAuthentication(authentication);
+    res.setHeader("Access-Control-Allow-Credentials", "true");
     chain.doFilter(req, res);
   }
 
