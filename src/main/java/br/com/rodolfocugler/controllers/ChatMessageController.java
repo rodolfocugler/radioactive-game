@@ -50,6 +50,13 @@ public class ChatMessageController {
     return messageService.add(chatMessage);
   }
 
+  @GetMapping("/hello")
+  @SendTo("/topic/greetings")
+  public String greeting() throws InterruptedException {
+    Thread.sleep(1000); // simulated delay
+    return "olá";
+  }
+
   @DeleteMapping("/{id}")
   public void delete(@PathVariable long id) throws DataNotFoundException {
     messageService.delete(id);
