@@ -5,6 +5,7 @@ import br.com.rodolfocugler.domains.ChatMessage;
 import br.com.rodolfocugler.exceptions.DataNotFoundException;
 import br.com.rodolfocugler.services.MessageService;
 import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.annotation.Validated;
@@ -17,11 +18,14 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/chatMessages")
 public class ChatMessageController {
-  public ChatMessageController(MessageService messageService) {
+  public ChatMessageController(MessageService messageService,
+                               SimpMessagingTemplate simpMessagingTemplate) {
     this.messageService = messageService;
+    this.simpMessagingTemplate = simpMessagingTemplate;
   }
 
   private final MessageService messageService;
+  private final SimpMessagingTemplate simpMessagingTemplate;
 
   @GetMapping("/{id}")
   public ChatMessage get(@PathVariable long id) throws DataNotFoundException {
@@ -51,10 +55,10 @@ public class ChatMessageController {
   }
 
   @GetMapping("/hello")
-  @SendTo("/topic/greetings")
-  public String greeting() throws InterruptedException {
+  public void greeting() throws InterruptedException {
     Thread.sleep(1000); // simulated delay
-    return "olá";
+    simpMessagingTemplate.convertAndSend("/topic/greetings",
+            ChatMessage.builder().text("ola").build());
   }
 
   @DeleteMapping("/{id}")
