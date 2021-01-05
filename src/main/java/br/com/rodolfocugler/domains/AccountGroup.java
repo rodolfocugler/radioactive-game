@@ -22,6 +22,6 @@ public class AccountGroup {
   private String name;
 
   @OneToMany(mappedBy = "accountGroup")
-  @JsonIgnoreProperties("accountGroup")
+  @JsonIgnoreProperties(value = {"accountGroup"}, allowSetters = true)
   private List<Account> accounts;
 }

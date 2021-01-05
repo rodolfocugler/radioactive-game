@@ -40,6 +40,6 @@ public class Account {
   private List<Response> responses;
 
   @OneToMany(mappedBy = "account")
-  @JsonIgnoreProperties("account")
+  @JsonIgnoreProperties(value = {"account"}, allowSetters = true)
   private List<ChatMessage> chatMessages;
 }
