@@ -47,7 +47,7 @@ public class EnvironmentService {
   }
 
   public Environment getWithUserResponses(long id, long userId) throws DataNotFoundException {
-    Environment environment = get(id);
+    Environment environment = environmentRepository.findWithUserResponses(id, userId);
     environment.getQuestions().forEach(question -> {
       List<Response> responses = question.getResponses().stream()
               .filter(response -> response.getAccount().getId() == userId)
