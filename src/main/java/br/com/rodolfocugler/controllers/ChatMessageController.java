@@ -47,6 +47,7 @@ public class ChatMessageController {
     Account logged = (Account) authentication.getPrincipal();
 
     chatMessage.setAccount(logged);
+    chatMessage.setEnvironment(logged.getEnvironment());
     chatMessage.setMessageDate(LocalDate.now().atStartOfDay()
             .toInstant(OffsetDateTime.now().getOffset()).toEpochMilli());
 
