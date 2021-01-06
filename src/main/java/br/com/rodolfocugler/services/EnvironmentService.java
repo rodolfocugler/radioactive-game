@@ -1,6 +1,5 @@
 package br.com.rodolfocugler.services;
 
-import br.com.rodolfocugler.domains.Account;
 import br.com.rodolfocugler.domains.Environment;
 import br.com.rodolfocugler.domains.Response;
 import br.com.rodolfocugler.exceptions.DataNotFoundException;
@@ -24,6 +23,11 @@ public class EnvironmentService {
             .findById(id)
             .orElseThrow(() -> new DataNotFoundException("Environment was not found."));
 
+    removeEnvironmentProperties(environment);
+    return environment;
+  }
+
+  private void removeEnvironmentProperties(Environment environment) {
     environment.getQuestions().forEach(question -> {
       question.getResponses()
               .parallelStream()
@@ -37,11 +41,13 @@ public class EnvironmentService {
     });
     environment.setAccounts(null);
     environment.setChatMessages(null);
-    return environment;
   }
 
   public List<Environment> get() {
-    return environmentRepository.findAllByOrderByIdAsc();
+    List<Environment> environments = environmentRepository.findAllByOrderByIdAsc();
+    environments.parallelStream()
+            .forEach(environment -> removeEnvironmentProperties(environment));
+    return environments;
   }
 
   public Environment add(Environment environment) {
