@@ -34,13 +34,13 @@ public class EnvironmentService {
               .forEach(response -> {
                 response.getAccount().setEnvironment(null);
                 response.getAccount().setResponses(null);
-                response.getAccount().setChatMessages(null);
+//                response.getAccount().setChatMessages(null);
                 response.setQuestion(null);
               });
       question.setEnvironment(null);
     });
-    environment.setAccounts(null);
-    environment.setChatMessages(null);
+//    environment.setAccounts(null);
+//    environment.setChatMessages(null);
   }
 
   public List<Environment> get() {

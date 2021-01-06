@@ -39,7 +39,7 @@ public class Account {
   @JsonIgnoreProperties("account")
   private List<Response> responses;
 
-  @OneToMany(mappedBy = "account")
-  @JsonIgnoreProperties(value = {"account"}, allowSetters = true)
-  private List<ChatMessage> chatMessages;
+//  @OneToMany(mappedBy = "account")
+//  @JsonIgnoreProperties(value = {"account"}, allowSetters = true)
+//  private List<ChatMessage> chatMessages;
 }

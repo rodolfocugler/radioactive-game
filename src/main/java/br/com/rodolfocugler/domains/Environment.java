@@ -28,17 +28,17 @@ public class Environment {
   @Column(nullable = false)
   private String icon;
 
-  @OneToMany(mappedBy = "environment", fetch = FetchType.LAZY)
-  @JsonIgnoreProperties("environment")
-  private List<Account> accounts;
+//  @OneToMany(mappedBy = "environment")
+//  @JsonIgnoreProperties("environment")
+//  private List<Account> accounts;
 
   @OneToMany(mappedBy = "environment")
   @JsonIgnoreProperties("environment")
   private List<Question> questions;
 
-  @OneToMany(mappedBy = "environment", fetch = FetchType.LAZY)
-  @JsonIgnoreProperties("environment")
-  private List<ChatMessage> chatMessages;
+//  @OneToMany(mappedBy = "environment", fetch = FetchType.LAZY)
+//  @JsonIgnoreProperties("environment")
+//  private List<ChatMessage> chatMessages;
 
   @OneToMany(mappedBy = "environment")
   @JsonIgnoreProperties("environment")

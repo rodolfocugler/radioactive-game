@@ -108,8 +108,8 @@ class EnvironmentControllerTest extends BaseControllerTest {
 
     assertEquals(environment.getDescription(), actualEnvironment.getDescription());
     assertEquals(environment.getName(), actualEnvironment.getName());
-    assertNull(environment.getAccounts());
-    assertNull(environment.getChatMessages());
+//    assertNull(environment.getAccounts());
+//    assertNull(environment.getChatMessages());
 
     assertEquals(1, actualEnvironment.getQuestions().size());
     Question actualQuestion = actualEnvironment.getQuestions().get(0);
