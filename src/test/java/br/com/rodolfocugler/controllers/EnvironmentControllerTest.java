@@ -1,9 +1,6 @@
 package br.com.rodolfocugler.controllers;
 
-import br.com.rodolfocugler.domains.Account;
-import br.com.rodolfocugler.domains.Environment;
-import br.com.rodolfocugler.domains.Question;
-import br.com.rodolfocugler.domains.Response;
+import br.com.rodolfocugler.domains.*;
 import com.fasterxml.jackson.databind.type.CollectionType;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 import org.junit.jupiter.api.Test;
@@ -15,6 +12,7 @@ import java.util.List;
 
 import static br.com.rodolfocugler.configs.AuthenticationConfig.HEADER_STRING;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -96,16 +94,22 @@ class EnvironmentControllerTest extends BaseControllerTest {
     postBase(response, "/api/responses", token);
 
     Account account = Account.builder().email("email2@email2.com").name("name2").number("12345")
-            .build();
+            .environment(environment).build();
     addAccount(account);
     String token2 = getToken(account);
+
+    ChatMessage chatMessage = ChatMessage.builder().text("text").build();
+
     postBase(response, "/api/responses", token2);
+    postBase(chatMessage, "/api/chatMessages", token2);
 
     String httpResponse = getBase(urlPath + "/getWithUserResponses/1", token);
     Environment actualEnvironment = mapper.readValue(httpResponse, Environment.class);
 
     assertEquals(environment.getDescription(), actualEnvironment.getDescription());
     assertEquals(environment.getName(), actualEnvironment.getName());
+    assertNull(environment.getAccounts());
+    assertNull(environment.getChatMessages());
 
     assertEquals(1, actualEnvironment.getQuestions().size());
     Question actualQuestion = actualEnvironment.getQuestions().get(0);

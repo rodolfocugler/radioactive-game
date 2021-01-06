@@ -52,8 +52,13 @@ public class EnvironmentService {
       List<Response> responses = question.getResponses().stream()
               .filter(response -> response.getAccount().getId() == userId)
               .collect(Collectors.toList());
+
+      responses.forEach(response -> response.setAccount(null));
       question.setResponses(responses);
+      question.setEnvironment(null);
     });
+    environment.setAccounts(null);
+    environment.setChatMessages(null);
 
     return environment;
   }
