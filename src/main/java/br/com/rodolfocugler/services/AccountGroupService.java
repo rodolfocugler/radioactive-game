@@ -1,20 +1,26 @@
 package br.com.rodolfocugler.services;
 
+import br.com.rodolfocugler.domains.Account;
 import br.com.rodolfocugler.domains.AccountGroup;
 import br.com.rodolfocugler.exceptions.DataNotFoundException;
+import br.com.rodolfocugler.repositories.AccountRepository;
 import br.com.rodolfocugler.repositories.GroupRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AccountGroupService {
 
-  public AccountGroupService(GroupRepository groupRepository) {
+  public AccountGroupService(GroupRepository groupRepository,
+                             AccountRepository accountRepository) {
     this.groupRepository = groupRepository;
+    this.accountRepository = accountRepository;
   }
 
   private final GroupRepository groupRepository;
+  private final AccountRepository accountRepository;
 
   public AccountGroup get(long id) throws DataNotFoundException {
     return groupRepository
@@ -28,6 +34,13 @@ public class AccountGroupService {
 
   public AccountGroup add(AccountGroup accountGroup) {
     groupRepository.save(accountGroup);
+    accountGroup.getAccounts().parallelStream().forEach(a -> {
+      Account account = accountRepository.findById(a.getId())
+              .orElseThrow();
+      account.setAccountGroup(accountGroup);
+      accountRepository.save(account);
+    });
+
     return accountGroup;
   }
 

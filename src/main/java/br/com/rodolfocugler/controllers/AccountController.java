@@ -23,11 +23,6 @@ public class AccountController {
     return accountService.get(id);
   }
 
-  @GetMapping("/getByGroupId/{accountGroupId}")
-  public List<Account> getByGroupId(@PathVariable long accountGroupId) {
-    return accountService.getByGroupId(accountGroupId);
-  }
-
   @GetMapping
   public List<Account> get() {
     return accountService.get();
