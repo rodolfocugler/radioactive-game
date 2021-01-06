@@ -1,6 +1,7 @@
 package br.com.rodolfocugler.controllers;
 
 import br.com.rodolfocugler.domains.Account;
+import br.com.rodolfocugler.domains.AccountGroup;
 import br.com.rodolfocugler.exceptions.DataNotFoundException;
 import br.com.rodolfocugler.services.AccountService;
 import org.springframework.validation.annotation.Validated;
@@ -20,6 +21,11 @@ public class AccountController {
   @GetMapping("/{id}")
   public Account get(@PathVariable long id) throws DataNotFoundException {
     return accountService.get(id);
+  }
+
+  @GetMapping("/getByGroupId/{accountGroupId}")
+  public List<Account> getByGroupId(@PathVariable long accountGroupId) {
+    return accountService.getByGroupId(accountGroupId);
   }
 
   @GetMapping

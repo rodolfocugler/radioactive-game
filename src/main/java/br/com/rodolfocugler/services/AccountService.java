@@ -77,4 +77,8 @@ public class AccountService implements UserDetailsService {
 
     return new User(sb.toString(), account.getNumber(), emptyList());
   }
+
+  public List<Account> getByGroupId(long accountGroupId) {
+    return accountRepository.findAllByAccountGroup_IdOrderByName(accountGroupId);
+  }
 }
