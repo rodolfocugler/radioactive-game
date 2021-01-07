@@ -17,6 +17,12 @@ public class Transport {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id = 0;
 
+  @ManyToOne
+  private AccountGroup accountGroup;
+
+  @Column(nullable = false)
+  private int carIndex;
+
   @OneToMany
   private List<Account> accounts;
 
@@ -25,4 +31,10 @@ public class Transport {
 
   @Column(nullable = false)
   private long timestamp;
+
+  @ManyToOne
+  private Environment fromEnvironment;
+
+  @ManyToOne
+  private Environment toEnvironment;
 }

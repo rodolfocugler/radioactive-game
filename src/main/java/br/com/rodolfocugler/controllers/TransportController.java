@@ -22,6 +22,11 @@ public class TransportController {
     return transportService.get(id);
   }
 
+  @GetMapping("/getByIndex/{carId}/{accountGroupId}")
+  public Transport getByIndex(@PathVariable long carId, @PathVariable long accountGroupId) {
+    return transportService.getByIndex(carId, accountGroupId);
+  }
+
   @GetMapping
   public List<Transport> get() {
     return transportService.get();

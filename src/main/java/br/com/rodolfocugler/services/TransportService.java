@@ -30,4 +30,9 @@ public class TransportService {
     transportRepository.save(transport);
     return transport;
   }
+
+  public Transport getByIndex(long carId, long accountGroupId) {
+    return transportRepository.findFirstByAccountGroup_IdAndCarIndexOrderByTimestampDesc(carId,
+            accountGroupId);
+  }
 }
