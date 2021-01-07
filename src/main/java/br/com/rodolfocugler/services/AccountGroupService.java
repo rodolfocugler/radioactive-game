@@ -2,11 +2,16 @@ package br.com.rodolfocugler.services;
 
 import br.com.rodolfocugler.domains.Account;
 import br.com.rodolfocugler.domains.AccountGroup;
+import br.com.rodolfocugler.domains.Environment;
+import br.com.rodolfocugler.domains.Transport;
 import br.com.rodolfocugler.exceptions.DataNotFoundException;
 import br.com.rodolfocugler.repositories.AccountRepository;
 import br.com.rodolfocugler.repositories.GroupRepository;
+import br.com.rodolfocugler.repositories.TransportRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,13 +19,16 @@ import java.util.Optional;
 public class AccountGroupService {
 
   public AccountGroupService(GroupRepository groupRepository,
-                             AccountRepository accountRepository) {
+                             AccountRepository accountRepository,
+                             TransportRepository transportRepository) {
     this.groupRepository = groupRepository;
     this.accountRepository = accountRepository;
+    this.transportRepository = transportRepository;
   }
 
   private final GroupRepository groupRepository;
   private final AccountRepository accountRepository;
+  private final TransportRepository transportRepository;
 
   public AccountGroup get(long id) throws DataNotFoundException {
     return groupRepository
@@ -41,7 +49,20 @@ public class AccountGroupService {
       accountRepository.save(account);
     });
 
+    transportRepository.save(generateTransport(accountGroup, 1));
+    transportRepository.save(generateTransport(accountGroup, 2));
+
     return accountGroup;
+  }
+
+  private Transport generateTransport(AccountGroup accountGroup, int carIndex) {
+    return Transport.builder().accountGroup(accountGroup)
+            .toEnvironment(Environment.builder().id(1).build())
+            .fromEnvironment(Environment.builder().id(1).build())
+            .carIndex(carIndex)
+            .timestamp(LocalDate.now().atStartOfDay()
+                    .toInstant(OffsetDateTime.now().getOffset()).toEpochMilli())
+            .build();
   }
 
   public AccountGroup edit(long id, AccountGroup newAccountGroup) throws DataNotFoundException {
