@@ -23,7 +23,7 @@ public class TransportController {
   }
 
   @GetMapping("/getByIndex/{carId}/{accountGroupId}")
-  public Transport getByIndex(@PathVariable long carId, @PathVariable long accountGroupId) {
+  public Transport getByIndex(@PathVariable int carId, @PathVariable long accountGroupId) {
     return transportService.getByIndex(carId, accountGroupId);
   }
 

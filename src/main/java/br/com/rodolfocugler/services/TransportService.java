@@ -31,8 +31,8 @@ public class TransportService {
     return transport;
   }
 
-  public Transport getByIndex(long carId, long accountGroupId) {
-    return transportRepository.findFirstByAccountGroup_IdAndCarIndexOrderByTimestampDesc(carId,
-            accountGroupId);
+  public Transport getByIndex(int carId, long accountGroupId) {
+    return transportRepository
+            .findFirstByAccountGroup_IdAndCarIndexOrderByTimestampDesc(accountGroupId, carId);
   }
 }

@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TransportRepository extends JpaRepository<Transport, Long> {
-  Transport findFirstByAccountGroup_IdAndCarIndexOrderByTimestampDesc(long carId, long accountGroupId);
+  Transport findFirstByAccountGroup_IdAndCarIndexOrderByTimestampDesc(long accountGroupId, int carId);
 }
