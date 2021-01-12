@@ -71,9 +71,9 @@ public class AccountService implements UserDetailsService {
     sb.append(";");
     sb.append(account.getName());
     sb.append(";");
-    sb.append(account.getEnvironment() != null ? account.getEnvironment().getId() : 0);
+    sb.append(account.getEnvironment() != null ? account.getEnvironment().getId() : 1);
     sb.append(";");
-    sb.append(account.getAccountGroup() != null ? account.getAccountGroup().getId() : 0);
+    sb.append(account.getAccountGroup() != null ? account.getAccountGroup().getId() : 1);
 
     return new User(sb.toString(), account.getNumber(), emptyList());
   }

@@ -12,7 +12,6 @@ import java.util.List;
 
 import static br.com.rodolfocugler.configs.AuthenticationConfig.HEADER_STRING;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -64,7 +63,7 @@ class EnvironmentControllerTest extends BaseControllerTest {
     postBase(question, "/api/questions", token);
     postBase(response, "/api/responses", token);
 
-    String httpResponse = getBase(urlPath + "/getWithUserResponses/1", token);
+    String httpResponse = getBase(urlPath + "/getWithUserResponses", token);
     Environment actualEnvironment = mapper.readValue(httpResponse, Environment.class);
 
     assertEquals(environment.getDescription(), actualEnvironment.getDescription());
@@ -103,7 +102,7 @@ class EnvironmentControllerTest extends BaseControllerTest {
     postBase(response, "/api/responses", token2);
     postBase(chatMessage, "/api/chatMessages", token2);
 
-    String httpResponse = getBase(urlPath + "/getWithUserResponses/1", token);
+    String httpResponse = getBase(urlPath + "/getWithUserResponses", token);
     Environment actualEnvironment = mapper.readValue(httpResponse, Environment.class);
 
     assertEquals(environment.getDescription(), actualEnvironment.getDescription());

@@ -26,7 +26,7 @@ public class EnvironmentController {
   }
 
   @GetMapping("/getWithUserResponses")
-  public Environment getWithUserResponses(@PathVariable long id) throws DataNotFoundException {
+  public Environment getWithUserResponses() throws DataNotFoundException {
     Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
     Account logged = (Account) authentication.getPrincipal();
     return environmentService.getWithUserResponses(logged.getEnvironment().getId(), logged.getId());
