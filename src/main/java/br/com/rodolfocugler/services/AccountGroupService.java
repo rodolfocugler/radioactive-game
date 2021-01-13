@@ -54,7 +54,6 @@ public class AccountGroupService {
 
   private Transport generateTransport(AccountGroup accountGroup, int carIndex) {
     return Transport.builder().accountGroup(accountGroup)
-            .accounts(accountGroup.getAccounts())
             .toEnvironment(Environment.builder().id(1).build())
             .fromEnvironment(Environment.builder().id(1).build())
             .carIndex(carIndex)
