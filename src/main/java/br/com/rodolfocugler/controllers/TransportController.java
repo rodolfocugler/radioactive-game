@@ -10,8 +10,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
 import java.util.List;
 
 @RestController
@@ -43,15 +41,14 @@ public class TransportController {
 
   @PostMapping
   public Transport add(@RequestBody @Validated Transport transport) {
-    transport.setTimestamp(LocalDate.now().atStartOfDay()
-            .toInstant(OffsetDateTime.now().getOffset()).toEpochMilli());
+    transport.setTimestamp(System.currentTimeMillis());
     Transport transportSaved = transportService.add(transport);
 
     Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
     Account logged = (Account) authentication.getPrincipal();
 
     simpMessagingTemplate.convertAndSend("/topic/transport/" +
-            + logged.getAccountGroup().getId(), transport);
+            +logged.getAccountGroup().getId(), transport);
 
     return transportSaved;
   }

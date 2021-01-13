@@ -10,8 +10,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
 import java.util.List;
 
 @RestController
@@ -48,8 +46,7 @@ public class ChatMessageController {
 
     chatMessage.setAccount(logged);
     chatMessage.setEnvironment(logged.getEnvironment());
-    chatMessage.setMessageDate(LocalDate.now().atStartOfDay()
-            .toInstant(OffsetDateTime.now().getOffset()).toEpochMilli());
+    chatMessage.setMessageDate(System.currentTimeMillis());
 
     ChatMessage chatMessageSaved = messageService.add(chatMessage);
 
@@ -59,7 +56,6 @@ public class ChatMessageController {
 
     return chatMessageSaved;
   }
-
 
   @DeleteMapping("/{id}")
   public void delete(@PathVariable long id) throws DataNotFoundException {

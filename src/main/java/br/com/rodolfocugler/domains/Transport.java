@@ -23,7 +23,7 @@ public class Transport {
   @Column(nullable = false)
   private int carIndex;
 
-  @OneToMany
+  @ManyToMany
   private List<Account> accounts;
 
   @OneToMany

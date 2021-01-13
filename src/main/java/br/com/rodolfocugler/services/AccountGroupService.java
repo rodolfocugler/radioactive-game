@@ -10,10 +10,7 @@ import br.com.rodolfocugler.repositories.GroupRepository;
 import br.com.rodolfocugler.repositories.TransportRepository;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class AccountGroupService {
@@ -57,11 +54,11 @@ public class AccountGroupService {
 
   private Transport generateTransport(AccountGroup accountGroup, int carIndex) {
     return Transport.builder().accountGroup(accountGroup)
+            .accounts(accountGroup.getAccounts())
             .toEnvironment(Environment.builder().id(1).build())
             .fromEnvironment(Environment.builder().id(1).build())
             .carIndex(carIndex)
-            .timestamp(LocalDate.now().atStartOfDay()
-                    .toInstant(OffsetDateTime.now().getOffset()).toEpochMilli())
+            .timestamp(System.currentTimeMillis())
             .build();
   }
 
