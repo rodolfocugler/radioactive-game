@@ -45,7 +45,7 @@ public class ChatMessageController {
   public List<ChatMessage> getByAccountGroup() {
     Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
     Account logged = (Account) authentication.getPrincipal();
-    return messageService.getByEnvironmentId(0, logged.getAccountGroup().getId());
+    return messageService.getByEnvironmentId(null, logged.getAccountGroup().getId());
   }
 
   @PostMapping

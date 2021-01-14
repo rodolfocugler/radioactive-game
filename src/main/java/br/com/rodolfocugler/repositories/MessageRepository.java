@@ -9,5 +9,5 @@ import java.util.List;
 @Repository
 public interface MessageRepository extends JpaRepository<ChatMessage, Long> {
   List<ChatMessage> findAllByEnvironment_IdAndAccount_AccountGroup_IdOrderByMessageDate
-          (long environmentId, long accountGroupId);
+          (Long environmentId, long accountGroupId);
 }
