@@ -38,6 +38,7 @@ public class AccountService implements UserDetailsService {
   }
 
   public Account add(Account account) {
+    account.setLeader(false);
     account.setNumber(bCryptPasswordEncoder.encode(account.getNumber()));
     accountRepository.save(account);
     return account;
@@ -74,6 +75,8 @@ public class AccountService implements UserDetailsService {
     sb.append(account.getEnvironment() != null ? account.getEnvironment().getId() : 1);
     sb.append(";");
     sb.append(account.getAccountGroup() != null ? account.getAccountGroup().getId() : 1);
+    sb.append(";");
+    sb.append(account.isLeader());
 
     return new User(sb.toString(), account.getNumber(), emptyList());
   }

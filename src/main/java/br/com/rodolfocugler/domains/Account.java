@@ -27,6 +27,9 @@ public class Account {
   @Column(nullable = false)
   private String number;
 
+  @Column(nullable = false)
+  private boolean isLeader;
+
   @ManyToOne
   @JsonIgnoreProperties("accounts")
   private AccountGroup accountGroup;

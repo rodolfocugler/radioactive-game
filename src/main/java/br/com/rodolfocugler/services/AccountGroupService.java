@@ -39,9 +39,15 @@ public class AccountGroupService {
 
   public AccountGroup add(AccountGroup accountGroup) {
     groupRepository.save(accountGroup);
+    long firstAccountId = accountGroup.getAccounts().get(0).getId();
     accountGroup.getAccounts().parallelStream().forEach(a -> {
       Account account = accountRepository.findById(a.getId())
               .orElseThrow();
+
+      if (firstAccountId == account.getId()) {
+         account.setLeader(true);
+      }
+
       account.setAccountGroup(accountGroup);
       accountRepository.save(account);
     });

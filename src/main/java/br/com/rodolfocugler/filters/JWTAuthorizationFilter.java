@@ -63,6 +63,7 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
                       .build())
               .accountGroup(AccountGroup.builder().id(decodedJWT.getClaim("group").asLong())
                       .build())
+              .isLeader(decodedJWT.getClaim("isLeader").asBoolean())
               .build();
 
       if (account != null) {
