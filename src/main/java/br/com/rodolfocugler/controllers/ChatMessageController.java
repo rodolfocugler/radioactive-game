@@ -36,7 +36,16 @@ public class ChatMessageController {
 
   @GetMapping("/getByEnvironmentId/{id}")
   public List<ChatMessage> getByEnvironmentId(@PathVariable long id) {
-    return messageService.getByEnvironmentId(id);
+    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    Account logged = (Account) authentication.getPrincipal();
+    return messageService.getByEnvironmentId(id, logged.getAccountGroup().getId());
+  }
+
+  @GetMapping("/getByAccountGroup")
+  public List<ChatMessage> getByAccountGroup() {
+    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    Account logged = (Account) authentication.getPrincipal();
+    return messageService.getByEnvironmentId(0, logged.getAccountGroup().getId());
   }
 
   @PostMapping
@@ -52,6 +61,22 @@ public class ChatMessageController {
 
     simpMessagingTemplate.convertAndSend("/topic/messages/" +
             logged.getEnvironment().getId() + "/"
+            + logged.getAccountGroup().getId(), chatMessageSaved);
+
+    return chatMessageSaved;
+  }
+
+  @PostMapping("/all")
+  public ChatMessage addAll(@RequestBody @Validated ChatMessage chatMessage) {
+    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    Account logged = (Account) authentication.getPrincipal();
+
+    chatMessage.setAccount(logged);
+    chatMessage.setMessageDate(System.currentTimeMillis());
+
+    ChatMessage chatMessageSaved = messageService.add(chatMessage);
+
+    simpMessagingTemplate.convertAndSend("/topic/messages/" +
             + logged.getAccountGroup().getId(), chatMessageSaved);
 
     return chatMessageSaved;
