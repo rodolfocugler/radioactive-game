@@ -50,40 +50,35 @@ public class ChatMessageController {
 
   @PostMapping
   public ChatMessage add(@RequestBody @Validated ChatMessage chatMessage) {
-    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-    Account logged = (Account) authentication.getPrincipal();
-
-    chatMessage.setAccount(logged);
-    chatMessage.setEnvironment(logged.getEnvironment());
-    chatMessage.setMessageDate(System.currentTimeMillis());
-
-    ChatMessage chatMessageSaved = messageService.add(chatMessage);
-
-    simpMessagingTemplate.convertAndSend("/topic/messages/" +
-            logged.getEnvironment().getId() + "/"
-            + logged.getAccountGroup().getId(), chatMessageSaved);
-
-    return chatMessageSaved;
+    return add(false, chatMessage);
   }
 
   @PostMapping("/all")
   public ChatMessage addAll(@RequestBody @Validated ChatMessage chatMessage) {
-    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-    Account logged = (Account) authentication.getPrincipal();
-
-    chatMessage.setAccount(logged);
-    chatMessage.setMessageDate(System.currentTimeMillis());
-
-    ChatMessage chatMessageSaved = messageService.add(chatMessage);
-
-    simpMessagingTemplate.convertAndSend("/topic/messages/" +
-            + logged.getAccountGroup().getId(), chatMessageSaved);
-
-    return chatMessageSaved;
+    return add(true, chatMessage);
   }
 
   @DeleteMapping("/{id}")
   public void delete(@PathVariable long id) throws DataNotFoundException {
     messageService.delete(id);
+  }
+
+  private ChatMessage add(boolean isAll, ChatMessage chatMessage) {
+    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    Account logged = (Account) authentication.getPrincipal();
+
+    chatMessage.setAccount(logged);
+    chatMessage.setMessageDate(System.currentTimeMillis());
+
+    if (!isAll) {
+      chatMessage.setEnvironment(logged.getEnvironment());
+    }
+
+    ChatMessage chatMessageSaved = messageService.add(chatMessage);
+
+    simpMessagingTemplate.convertAndSend("/topic/messages/" +
+            + logged.getAccountGroup().getId(), chatMessageSaved);
+
+    return chatMessageSaved;
   }
 }
