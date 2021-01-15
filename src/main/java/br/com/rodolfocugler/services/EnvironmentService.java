@@ -46,7 +46,7 @@ public class EnvironmentService {
   public List<Environment> get() {
     List<Environment> environments = environmentRepository.findAllByOrderByIdAsc();
     environments.parallelStream()
-            .forEach(environment -> removeEnvironmentProperties(environment));
+            .forEach(this::removeEnvironmentProperties);
     return environments;
   }
 

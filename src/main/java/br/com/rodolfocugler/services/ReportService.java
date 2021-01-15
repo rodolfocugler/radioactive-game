@@ -1,10 +1,6 @@
 package br.com.rodolfocugler.services;
 
-import br.com.rodolfocugler.domains.Account;
-import br.com.rodolfocugler.domains.AccountGroup;
-import br.com.rodolfocugler.domains.Tool;
-import br.com.rodolfocugler.domains.Transport;
-import br.com.rodolfocugler.dtos.EventDTO;
+import br.com.rodolfocugler.domains.*;
 import br.com.rodolfocugler.dtos.ReportDTO;
 import br.com.rodolfocugler.dtos.TransportEventDTO;
 import br.com.rodolfocugler.exceptions.DataNotFoundException;
@@ -14,19 +10,24 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Service
 public class ReportService {
 
   public ReportService(AccountGroupService accountGroupService,
-                       TransportService transportService) {
+                       TransportService transportService,
+                       MessageService messageService,
+                       EnvironmentService environmentService) {
     this.accountGroupService = accountGroupService;
     this.transportService = transportService;
+    this.messageService = messageService;
+    this.environmentService = environmentService;
   }
 
   private final AccountGroupService accountGroupService;
   private final TransportService transportService;
+  private final MessageService messageService;
+  private final EnvironmentService environmentService;
 
   public ReportDTO getByAccountGroupId(long accountGroupId) throws DataNotFoundException {
     AccountGroup accountGroup = accountGroupService.get(accountGroupId);
@@ -40,8 +41,20 @@ public class ReportService {
             .tools(t.getTools().stream().map(Tool::getDescription).collect(Collectors.toList()))
             .build()).collect(Collectors.toList());
 
+    List<Environment> environments = environmentService.get();
+    Map<String, List<ChatMessage>> messages = environments.stream().collect(Collectors
+            .toMap(Environment::getName,
+                    e -> messageService.getByEnvironmentId(e.getId(), accountGroupId)));
+
+    messages.put("Geral", messageService.getByEnvironmentId(null, accountGroupId));
+
     return ReportDTO.builder()
             .accounts(accounts)
+            .startTime(transports.get(0).getTimestamp())
+            .endTime(transports.get(transports.size() - 1).getTimestamp())
+            .duration(transports.get(transports.size() - 1).getTimestamp()
+                    - transports.get(0).getTimestamp())
+            .messages(messages)
             .events(transportEvents)
             .build();
   }
