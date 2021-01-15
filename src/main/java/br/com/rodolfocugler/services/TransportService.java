@@ -51,4 +51,8 @@ public class TransportService {
     return transportRepository
             .findFirstByAccountGroup_IdAndCarIndexOrderByTimestampDesc(accountGroupId, carId);
   }
+
+  public List<Transport> getByAccountGroupId(long accountGroupId) {
+    return transportRepository.findAllByAccountGroup_IdOrderByTimestamp(accountGroupId);
+  }
 }
