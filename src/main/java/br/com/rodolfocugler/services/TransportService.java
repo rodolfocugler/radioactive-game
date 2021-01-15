@@ -37,7 +37,11 @@ public class TransportService {
   }
 
   public Transport add(Transport transport) {
-    transport.getTools().forEach(tool -> toolRepository.save(tool));
+    transport.getTools().forEach(tool -> {
+      tool.getDescription().trim();
+      tool.setEnvironment(transport.getToEnvironment());
+      toolRepository.save(tool);
+    });
     transport.getAccounts().forEach(account -> {
       Account accountDb = accountRepository.findById(account.getId()).get();
       accountDb.setEnvironment(transport.getToEnvironment());

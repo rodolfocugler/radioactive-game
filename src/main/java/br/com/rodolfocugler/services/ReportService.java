@@ -36,7 +36,7 @@ public class ReportService {
     List<Transport> transports = transportService.getByAccountGroupId(accountGroupId);
     List<TransportEventDTO> transportEvents = transports.stream().map(t -> TransportEventDTO
             .builder().timestamp(t.getTimestamp()).accounts(new ArrayList<>(accounts.values()))
-            .to(t.getToEnvironment().getName()).to(t.getToEnvironment().getName())
+            .from(t.getFromEnvironment().getName()).to(t.getToEnvironment().getName())
             .tools(t.getTools().stream().map(Tool::getDescription).collect(Collectors.toList()))
             .build()).collect(Collectors.toList());
 
