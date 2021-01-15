@@ -71,8 +71,10 @@ public class ReportService {
     LongStream messageStream = messages.values().stream().flatMap(List::stream).mapToLong(ChatDTO::getTimestamp);
     LongStream transportStream = transportEvents.stream().mapToLong(TransportEventDTO::getTimestamp);
 
-    long minTs = Math.min(messageStream.min().orElseThrow(), transportStream.min().orElseThrow());
-    long maxTs = Math.max(messageStream.max().orElseThrow(), transportStream.max().orElseThrow());
+    long minTs = Math.min(messageStream.min().orElse(Long.MAX_VALUE),
+            transportStream.min().orElse(Long.MAX_VALUE));
+    long maxTs = Math.max(messageStream.max().orElse(Long.MAX_VALUE),
+            transportStream.max().orElse(Long.MAX_VALUE));
 
     report.setStartTime(minTs);
     report.setEndTime(maxTs);
