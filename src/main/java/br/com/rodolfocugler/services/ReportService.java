@@ -1,6 +1,7 @@
 package br.com.rodolfocugler.services;
 
 import br.com.rodolfocugler.domains.*;
+import br.com.rodolfocugler.dtos.ChatDTO;
 import br.com.rodolfocugler.dtos.ReportDTO;
 import br.com.rodolfocugler.dtos.TransportEventDTO;
 import br.com.rodolfocugler.exceptions.DataNotFoundException;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.LongStream;
 
 @Service
 public class ReportService {
@@ -35,6 +37,8 @@ public class ReportService {
             .collect(Collectors.toMap(Account::getNumber, Account::getName));
 
     List<Transport> transports = transportService.getByAccountGroupId(accountGroupId);
+    transports.remove(0);
+    transports.remove(1);
     List<TransportEventDTO> transportEvents = transports.stream().map(t -> TransportEventDTO
             .builder().timestamp(t.getTimestamp()).accounts(new ArrayList<>(accounts.values()))
             .from(t.getFromEnvironment().getName()).to(t.getToEnvironment().getName())
@@ -42,20 +46,42 @@ public class ReportService {
             .build()).collect(Collectors.toList());
 
     List<Environment> environments = environmentService.get();
-    Map<String, List<ChatMessage>> messages = environments.stream().collect(Collectors
-            .toMap(Environment::getName,
-                    e -> messageService.getByEnvironmentId(e.getId(), accountGroupId)));
+    Map<String, List<ChatDTO>> messages = environments.stream().collect(Collectors
+            .toMap(Environment::getName, e -> {
+              List<ChatMessage> msgs = messageService
+                      .getByEnvironmentId(e.getId(), accountGroupId);
+              return parseToChartDTO(msgs);
+            }));
 
-    messages.put("Geral", messageService.getByEnvironmentId(null, accountGroupId));
+    messages.put("Geral", parseToChartDTO(messageService
+            .getByEnvironmentId(null, accountGroupId)));
 
-    return ReportDTO.builder()
+    ReportDTO report = ReportDTO.builder()
             .accounts(accounts)
-            .startTime(transports.get(0).getTimestamp())
-            .endTime(transports.get(transports.size() - 1).getTimestamp())
-            .duration(transports.get(transports.size() - 1).getTimestamp()
-                    - transports.get(0).getTimestamp())
             .messages(messages)
             .events(transportEvents)
             .build();
+
+    fillUpTimes(messages, transportEvents, report);
+    return report;
+  }
+
+  private void fillUpTimes(Map<String, List<ChatDTO>> messages,
+                           List<TransportEventDTO> transportEvents, ReportDTO report) {
+    LongStream messageStream = messages.values().stream().flatMap(List::stream).mapToLong(ChatDTO::getTimestamp);
+    LongStream transportStream = transportEvents.stream().mapToLong(TransportEventDTO::getTimestamp);
+
+    long minTs = Math.min(messageStream.min().orElseThrow(), transportStream.min().orElseThrow());
+    long maxTs = Math.max(messageStream.max().orElseThrow(), transportStream.max().orElseThrow());
+
+    report.setStartTime(minTs);
+    report.setEndTime(maxTs);
+    report.setDuration(maxTs - minTs);
+  }
+
+  private List<ChatDTO> parseToChartDTO(List<ChatMessage> messages) {
+    return messages.stream().map(m -> ChatDTO.builder().text(m.getText())
+            .accounts(m.getAccount().getName()).timestamp(m.getMessageDate())
+            .build()).collect(Collectors.toList());
   }
 }
