@@ -8,10 +8,10 @@ import br.com.rodolfocugler.exceptions.DataNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.LongStream;
 
 @Service
 public class ReportService {
@@ -68,13 +68,15 @@ public class ReportService {
 
   private void fillUpTimes(Map<String, List<ChatDTO>> messages,
                            List<TransportEventDTO> transportEvents, ReportDTO report) {
-    LongStream messageStream = messages.values().stream().flatMap(List::stream).mapToLong(ChatDTO::getTimestamp);
-    LongStream transportStream = transportEvents.stream().mapToLong(TransportEventDTO::getTimestamp);
+    long[] messageTs = messages.values().stream().flatMap(List::stream).mapToLong(ChatDTO::getTimestamp)
+            .toArray();
+    long[] transportTs = transportEvents.stream().mapToLong(TransportEventDTO::getTimestamp)
+            .toArray();
 
-    long minTs = Math.min(messageStream.min().orElse(Long.MAX_VALUE),
-            transportStream.min().orElse(Long.MAX_VALUE));
-    long maxTs = Math.max(messageStream.max().orElse(Long.MAX_VALUE),
-            transportStream.max().orElse(Long.MAX_VALUE));
+    long minTs = Math.min(Arrays.stream(messageTs).min().orElse(Long.MAX_VALUE),
+            Arrays.stream(transportTs).min().orElse(Long.MAX_VALUE));
+    long maxTs = Math.max(Arrays.stream(messageTs).max().orElse(Long.MIN_VALUE),
+            Arrays.stream(transportTs).max().orElse(Long.MIN_VALUE));
 
     report.setStartTime(minTs);
     report.setEndTime(maxTs);
