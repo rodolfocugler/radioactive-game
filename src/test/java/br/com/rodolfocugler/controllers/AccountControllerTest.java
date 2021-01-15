@@ -49,6 +49,7 @@ class AccountControllerTest extends BaseControllerTest {
             .email("email@email.com")
             .name("name")
             .number("12345")
+            .password("12345@2021")
             .build();
 
     addAccount(account);
@@ -68,6 +69,7 @@ class AccountControllerTest extends BaseControllerTest {
             .email("email2@email2.com")
             .name("name2")
             .number("123456")
+            .password("12345@2021")
             .build();
 
     String token = getToken();

@@ -93,7 +93,7 @@ class EnvironmentControllerTest extends BaseControllerTest {
     postBase(response, "/api/responses", token);
 
     Account account = Account.builder().email("email2@email2.com").name("name2").number("12345")
-            .environment(environment).build();
+            .password("12345@2021").environment(environment).build();
     addAccount(account);
     String token2 = getToken(account);
 

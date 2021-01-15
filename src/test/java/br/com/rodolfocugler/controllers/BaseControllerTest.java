@@ -26,6 +26,7 @@ public class BaseControllerTest {
             .email("email@email.com")
             .name("name")
             .number("12345")
+            .password("12345@2021")
             .build();
 
     addAccount(account);
@@ -33,7 +34,7 @@ public class BaseControllerTest {
   }
 
   protected String getToken(Account account) throws Exception {
-    UserDTO user = UserDTO.builder().email(account.getEmail()).password(account.getNumber()).build();
+    UserDTO user = UserDTO.builder().email(account.getEmail()).password(account.getPassword()).build();
 
     String token = mockMvc.perform(post("/login").contentType(APPLICATION_JSON_VALUE)
             .content(mapper.writeValueAsString(user)))
