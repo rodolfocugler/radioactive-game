@@ -38,7 +38,7 @@ public class TransportService {
 
   public Transport add(Transport transport) {
     transport.getTools().forEach(tool -> {
-      tool.getDescription().trim();
+      tool.setDescription(tool.getDescription().trim());
       tool.setEnvironment(transport.getToEnvironment());
       toolRepository.save(tool);
     });
