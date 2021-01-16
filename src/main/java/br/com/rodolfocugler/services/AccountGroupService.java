@@ -28,9 +28,14 @@ public class AccountGroupService {
   private final TransportRepository transportRepository;
 
   public AccountGroup get(long id) throws DataNotFoundException {
-    return groupRepository
+    AccountGroup accountGroup = groupRepository
             .findById(id)
             .orElseThrow(() -> new DataNotFoundException("Group was not found."));
+
+    accountGroup.getAccounts().parallelStream().forEach(account -> {
+      account.getEnvironment().setQuestions(null);
+    });
+    return accountGroup;
   }
 
   public List<AccountGroup> get() {
