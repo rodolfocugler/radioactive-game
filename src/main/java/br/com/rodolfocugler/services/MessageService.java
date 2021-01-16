@@ -1,5 +1,6 @@
 package br.com.rodolfocugler.services;
 
+import br.com.rodolfocugler.domains.Account;
 import br.com.rodolfocugler.domains.ChatMessage;
 import br.com.rodolfocugler.exceptions.DataNotFoundException;
 import br.com.rodolfocugler.repositories.MessageRepository;
@@ -38,7 +39,16 @@ public class MessageService {
   }
 
   public List<ChatMessage> getByEnvironmentId(Long environmentId, long accountGroupId) {
-    return messageRepository.findAllByEnvironment_IdAndAccount_AccountGroup_IdOrderByMessageDate
-            (environmentId, accountGroupId);
+    List<ChatMessage> messages = messageRepository
+            .findAllByEnvironment_IdAndAccount_AccountGroup_IdOrderByMessageDate(environmentId,
+                    accountGroupId);
+
+    messages.parallelStream().forEach(message -> {
+      message.setEnvironment(null);
+      Account account = message.getAccount();
+      message.setAccount(Account.builder().id(account.getId()).name(account.getName()).build());
+    });
+
+    return messages;
   }
 }
