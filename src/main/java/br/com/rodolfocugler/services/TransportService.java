@@ -60,6 +60,7 @@ public class TransportService {
   private void removeFields(Transport transport) {
     transport.getAccounts().parallelStream().forEach(account ->
             account.getEnvironment().setQuestions(null));
+    transport.getAccountGroup().setAccounts(null);
   }
 
   public List<Transport> getByAccountGroupId(long accountGroupId) {
