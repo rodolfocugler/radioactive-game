@@ -61,6 +61,8 @@ public class TransportService {
     transport.getAccounts().parallelStream().forEach(account ->
             account.getEnvironment().setQuestions(null));
     transport.getAccountGroup().setAccounts(null);
+    transport.getFromEnvironment().setQuestions(null);
+    transport.getToEnvironment().setQuestions(null);
   }
 
   public List<Transport> getByAccountGroupId(long accountGroupId) {
