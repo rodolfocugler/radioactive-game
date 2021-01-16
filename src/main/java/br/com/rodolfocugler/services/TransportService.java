@@ -9,7 +9,6 @@ import br.com.rodolfocugler.repositories.TransportRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class TransportService {
@@ -52,11 +51,22 @@ public class TransportService {
   }
 
   public Transport getByIndex(int carId, long accountGroupId) {
-    return transportRepository
+    Transport transport = transportRepository
             .findFirstByAccountGroup_IdAndCarIndexOrderByTimestampDesc(accountGroupId, carId);
+    removeFields(transport);
+    return transport;
+  }
+
+  private void removeFields(Transport transport) {
+    transport.getAccounts().parallelStream().forEach(account ->
+            account.getEnvironment().setQuestions(null));
   }
 
   public List<Transport> getByAccountGroupId(long accountGroupId) {
-    return transportRepository.findAllByAccountGroup_IdOrderByTimestamp(accountGroupId);
+    List<Transport> transports = transportRepository
+            .findAllByAccountGroup_IdOrderByTimestamp(accountGroupId);
+
+    transports.parallelStream().forEach(this::removeFields);
+    return transports;
   }
 }
