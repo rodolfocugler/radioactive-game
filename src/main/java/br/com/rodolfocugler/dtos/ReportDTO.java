@@ -15,6 +15,7 @@ public class ReportDTO {
   private Map<String, String> accounts;
   private List<? extends EventDTO> events;
   private Map<String, List<ChatDTO>> messages;
+  private Map<String, List<QuestionDTO>> questions;
   private long startTime;
   private long endTime;
   private long duration;

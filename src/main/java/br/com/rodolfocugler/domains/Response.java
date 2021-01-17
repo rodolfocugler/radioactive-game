@@ -20,6 +20,9 @@ public class Response {
   @Column(nullable = false, length = 1024)
   private String text;
 
+  @Column(nullable = false)
+  private long timestamp;
+
   @ManyToOne
   @JsonIgnoreProperties(value = {"responses"}, allowSetters = true)
   private Question question;

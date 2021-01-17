@@ -1,9 +1,7 @@
 package br.com.rodolfocugler.services;
 
 import br.com.rodolfocugler.domains.*;
-import br.com.rodolfocugler.dtos.ChatDTO;
-import br.com.rodolfocugler.dtos.ReportDTO;
-import br.com.rodolfocugler.dtos.TransportEventDTO;
+import br.com.rodolfocugler.dtos.*;
 import br.com.rodolfocugler.exceptions.DataNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -37,8 +35,7 @@ public class ReportService {
             .collect(Collectors.toMap(Account::getNumber, Account::getName));
 
     List<Transport> transports = transportService.getByAccountGroupId(accountGroupId);
-    transports.remove(0);
-    transports.remove(1);
+    transports = transports.subList(2, transports.size());
     List<TransportEventDTO> transportEvents = transports.stream().map(t -> TransportEventDTO
             .builder().timestamp(t.getTimestamp()).accounts(new ArrayList<>(accounts.values()))
             .from(t.getFromEnvironment().getName()).to(t.getToEnvironment().getName())
@@ -56,14 +53,35 @@ public class ReportService {
     messages.put("Geral", parseToChartDTO(messageService
             .getByEnvironmentId(null, accountGroupId)));
 
+    List<Environment> environmentsWithResponses = environmentService
+            .getByAccountGroup(accountGroupId);
+    Map<String, List<QuestionDTO>> questions = environmentsWithResponses.stream().collect(Collectors
+            .toMap(Environment::getName, e -> {
+                      if (e.getQuestions() == null) return new ArrayList<>();
+                      return e.getQuestions().stream().map(this::mapToQuestion).collect(Collectors.toList());
+                    }
+            ));
+
+
     ReportDTO report = ReportDTO.builder()
             .accounts(accounts)
             .messages(messages)
             .events(transportEvents)
+            .questions(questions)
             .build();
 
     fillUpTimes(messages, transportEvents, report);
     return report;
+  }
+
+  private QuestionDTO mapToQuestion(Question q) {
+    List<ResponseDTO> responses = q.getResponses().stream()
+            .map(r -> ResponseDTO.builder().account(r.getAccount().getName())
+                    .timestamp(r.getTimestamp()).response(r.getText()).build())
+            .collect(Collectors.toList());
+
+    return QuestionDTO.builder().question(q.getDescription())
+            .responses(responses).build();
   }
 
   private void fillUpTimes(Map<String, List<ChatDTO>> messages,
