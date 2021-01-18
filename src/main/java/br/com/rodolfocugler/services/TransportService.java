@@ -43,7 +43,7 @@ public class TransportService {
     Map<String, Tool> tools = toolRepository
             .findAllByEnvironment_IdAndAccountGroupId(transport.getFromEnvironment().getId(),
                     transport.getAccountGroup().getId())
-            .stream().collect(Collectors.toMap(Tool::getDescription, e -> e));
+            .stream().collect(Collectors.toMap(Tool::getDescription, e -> e, (e1, e2) -> e1));
 
     List<Tool> toolsDb = transport.getTools().stream().map(tool -> {
       String description = tool.getDescription().trim();
