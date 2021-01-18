@@ -34,6 +34,7 @@ public class ResponseController {
   public Response add(@RequestBody @Validated Response response) {
     Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
     Account logged = (Account) authentication.getPrincipal();
+    response.setTimestamp(System.currentTimeMillis());
     response.setAccount(logged);
     return responseService.add(response);
   }

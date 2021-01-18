@@ -7,6 +7,7 @@ import br.com.rodolfocugler.exceptions.DataNotFoundException;
 import br.com.rodolfocugler.repositories.EnvironmentRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -89,7 +90,9 @@ public class EnvironmentService {
   }
 
   public List<Environment> getByAccountGroup(long accountGroupId) {
-    List<Environment> environments = environmentRepository.findAllByOrderByIdAsc();
+    List<Environment> environments = new ArrayList<>() {{
+      add(environmentRepository.findById(1L).get());
+    }};
 
     environments.forEach(environment -> {
       List<Question> questions = environment.getQuestions();

@@ -20,7 +20,7 @@ public class Response {
   @Column(nullable = false, length = 1024)
   private String text;
 
-  @Column(nullable = false)
+  @Column
   private long timestamp;
 
   @ManyToOne
