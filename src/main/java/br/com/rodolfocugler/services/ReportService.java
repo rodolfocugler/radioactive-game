@@ -74,7 +74,7 @@ public class ReportService {
 
   private QuestionDTO mapToQuestion(Question q, long accountGroupId) {
     List<ResponseDTO> responses = q.getResponses().stream()
-            .filter(r -> r.getAccount().getAccountGroup().getId() == accountGroupId)
+            //.filter(r -> r.getAccount().getAccountGroup().getId() == accountGroupId)
             .map(r -> ResponseDTO.builder().account(r.getAccount().getName())
                     .timestamp(r.getTimestamp()).response(r.getText()).build())
             .collect(Collectors.toList());
