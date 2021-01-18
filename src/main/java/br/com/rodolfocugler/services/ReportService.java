@@ -57,7 +57,7 @@ public class ReportService {
             .toMap(Environment::getName, e -> {
                       if (e.getQuestions() == null) return new ArrayList<>();
                       return e.getQuestions().stream()
-                              .map(q -> mapToQuestion(q, accountGroupId)).collect(Collectors.toList())
+                              .map(q -> mapToQuestion(q, accountGroupId)).collect(Collectors.toList());
                     }
             ));
 
