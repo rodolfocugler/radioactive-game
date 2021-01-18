@@ -45,8 +45,8 @@ class ReportControllerTest extends BaseControllerTest {
             .environment(environment1).build();
     Response response = Response.builder().question(question).text("text").build();
     postBase(question, "/api/questions", firstUserToken);
-    postBase(response, "/api/responses", firstUserToken);
-    postBase(response, "/api/responses", studentToken);
+//    postBase(response, "/api/responses", firstUserToken);
+//    postBase(response, "/api/responses", studentToken);
 
     Transport transport = Transport.builder().accounts(accounts).accountGroup(group).carIndex(1)
             .fromEnvironment(environment1).toEnvironment(environment2).tools(new ArrayList<>())

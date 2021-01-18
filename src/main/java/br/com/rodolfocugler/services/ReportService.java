@@ -30,6 +30,7 @@ public class ReportService {
   private final EnvironmentService environmentService;
 
   public ReportDTO getByAccountGroupId(long accountGroupId) throws DataNotFoundException {
+    List<Environment> environments = environmentService.get();
     AccountGroup accountGroup = accountGroupService.get(accountGroupId);
     Map<String, String> accounts = accountGroup.getAccounts().stream()
             .collect(Collectors.toMap(Account::getNumber, Account::getName));
@@ -42,7 +43,6 @@ public class ReportService {
             .tools(t.getTools().stream().map(Tool::getDescription).collect(Collectors.toList()))
             .build()).collect(Collectors.toList());
 
-    List<Environment> environments = environmentService.get();
     Map<String, List<ChatDTO>> messages = environments.stream().collect(Collectors
             .toMap(Environment::getName, e -> {
               List<ChatMessage> msgs = messageService
@@ -54,11 +54,8 @@ public class ReportService {
             .getByEnvironmentId(null, accountGroupId)));
 
     Map<String, List<QuestionDTO>> questions = environments.stream().collect(Collectors
-            .toMap(Environment::getName, e -> {
-                      if (e.getQuestions() == null) return new ArrayList<>();
-                      return e.getQuestions().stream().map(q -> mapToQuestion(q, accountGroupId))
-                              .collect(Collectors.toList());
-                    }
+            .toMap(Environment::getName, e -> e.getQuestions().stream()
+                    .map(q -> mapToQuestion(q, accountGroupId)).collect(Collectors.toList())
             ));
 
 
@@ -75,7 +72,7 @@ public class ReportService {
 
   private QuestionDTO mapToQuestion(Question q, long accountGroupId) {
     List<ResponseDTO> responses = q.getResponses().stream()
-            .filter(r -> r.getAccount().getAccountGroup().getId() == accountGroupId)
+            //.filter(r -> r.getAccount().getAccountGroup().getId() == accountGroupId)
             .map(r -> ResponseDTO.builder().account(r.getAccount().getName())
                     .timestamp(r.getTimestamp()).response(r.getText()).build())
             .collect(Collectors.toList());
