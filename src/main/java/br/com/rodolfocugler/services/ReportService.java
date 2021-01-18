@@ -53,12 +53,11 @@ public class ReportService {
     messages.put("Geral", parseToChartDTO(messageService
             .getByEnvironmentId(null, accountGroupId)));
 
-    List<Environment> environmentsWithResponses = environmentService
-            .getByAccountGroup(accountGroupId);
-    Map<String, List<QuestionDTO>> questions = environmentsWithResponses.stream().collect(Collectors
+    Map<String, List<QuestionDTO>> questions = environments.stream().collect(Collectors
             .toMap(Environment::getName, e -> {
                       if (e.getQuestions() == null) return new ArrayList<>();
-                      return e.getQuestions().stream().map(this::mapToQuestion).collect(Collectors.toList());
+                      return e.getQuestions().stream().map(q -> mapToQuestion(q, accountGroupId))
+                              .collect(Collectors.toList());
                     }
             ));
 
@@ -74,8 +73,9 @@ public class ReportService {
     return report;
   }
 
-  private QuestionDTO mapToQuestion(Question q) {
+  private QuestionDTO mapToQuestion(Question q, long accountGroupId) {
     List<ResponseDTO> responses = q.getResponses().stream()
+            .filter(r -> r.getAccount().getAccountGroup().getId() == accountGroupId)
             .map(r -> ResponseDTO.builder().account(r.getAccount().getName())
                     .timestamp(r.getTimestamp()).response(r.getText()).build())
             .collect(Collectors.toList());
