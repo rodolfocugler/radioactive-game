@@ -26,7 +26,7 @@ public class Transport {
   @ManyToMany
   private List<Account> accounts;
 
-  @OneToMany
+  @ManyToMany
   private List<Tool> tools;
 
   @Column(nullable = false)
