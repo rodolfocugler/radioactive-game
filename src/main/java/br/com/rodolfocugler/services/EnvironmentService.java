@@ -92,20 +92,20 @@ public class EnvironmentService {
   public List<Environment> getByAccountGroup(long accountGroupId) {
     List<Environment> environments = get();
 
-    environments.forEach(environment -> {
-      List<Question> questions = environment.getQuestions();
-      if (questions != null) {
-        questions.forEach(question -> {
-          List<Response> responses = question.getResponses().parallelStream()
-                  .filter(response ->
-                          response.getAccount().getAccountGroup().getId() == accountGroupId)
-                  .collect(Collectors.toList());
-          responses.forEach(response -> response.setAccount(null));
-          question.setResponses(responses);
-          question.setEnvironment(null);
-        });
-      }
-    });
+//    environments.forEach(environment -> {
+//      List<Question> questions = environment.getQuestions();
+//      if (questions != null) {
+//        questions.forEach(question -> {
+//          List<Response> responses = question.getResponses().parallelStream()
+//                  .filter(response ->
+//                          response.getAccount().getAccountGroup().getId() == accountGroupId)
+//                  .collect(Collectors.toList());
+//          responses.forEach(response -> response.setAccount(null));
+//          question.setResponses(responses);
+//          question.setEnvironment(null);
+//        });
+//      }
+//    });
 
     return environments;
   }
