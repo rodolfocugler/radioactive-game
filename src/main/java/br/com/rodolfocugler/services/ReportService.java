@@ -30,10 +30,10 @@ public class ReportService {
   private final EnvironmentService environmentService;
 
   public ReportDTO getByAccountGroupId(long accountGroupId) throws DataNotFoundException {
-    List<Environment> environments = environmentService.get();
     AccountGroup accountGroup = accountGroupService.get(accountGroupId);
     Map<String, String> accounts = accountGroup.getAccounts().stream()
             .collect(Collectors.toMap(Account::getNumber, Account::getName));
+    List<Environment> environments = environmentService.get();
 
     List<Transport> transports = transportService.getByAccountGroupId(accountGroupId);
     transports = transports.subList(2, transports.size());
