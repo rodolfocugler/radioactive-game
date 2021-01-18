@@ -45,12 +45,14 @@ public class TransportService {
             .stream().collect(Collectors.toMap(Tool::getDescription, e -> e));
 
     transport.getTools().forEach(tool -> {
-      if (tools.containsKey(tool.getDescription())) {
-        Tool toolDb = tools.get(tool.getDescription());
+      String description = tool.getDescription().trim();
+
+      if (tools.containsKey(description)) {
+        Tool toolDb = tools.get(description);
         toolDb.setEnvironment(transport.getToEnvironment());
         toolRepository.save(toolDb);
-      } else {
-        tool.setDescription(tool.getDescription().trim());
+      } else if (transport.getFromEnvironment().getId() == 1) {
+        tool.setDescription(description);
         tool.setEnvironment(transport.getToEnvironment());
         tool.setAccountGroupId(transport.getAccountGroup().getId());
         toolRepository.save(tool);
