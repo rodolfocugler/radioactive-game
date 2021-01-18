@@ -20,6 +20,9 @@ public class Tool {
   @Column(nullable = false)
   private String description;
 
+  @Column
+  private long accountGroupId;
+
   @ManyToOne
   @JsonIgnoreProperties("tools")
   private Environment environment;

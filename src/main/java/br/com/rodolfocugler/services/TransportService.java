@@ -1,6 +1,7 @@
 package br.com.rodolfocugler.services;
 
 import br.com.rodolfocugler.domains.Account;
+import br.com.rodolfocugler.domains.Tool;
 import br.com.rodolfocugler.domains.Transport;
 import br.com.rodolfocugler.exceptions.DataNotFoundException;
 import br.com.rodolfocugler.repositories.AccountRepository;
@@ -9,6 +10,8 @@ import br.com.rodolfocugler.repositories.TransportRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class TransportService {
@@ -36,10 +39,22 @@ public class TransportService {
   }
 
   public Transport add(Transport transport) {
+    Map<String, Tool> tools = toolRepository
+            .findAllByEnvironment_IdAndAccountGroupId(transport.getFromEnvironment().getId(),
+                    transport.getAccountGroup().getId())
+            .stream().collect(Collectors.toMap(Tool::getDescription, e -> e));
+
     transport.getTools().forEach(tool -> {
-      tool.setDescription(tool.getDescription().trim());
-      tool.setEnvironment(transport.getToEnvironment());
-      toolRepository.save(tool);
+      if (tools.containsKey(tool.getDescription())) {
+        Tool toolDb = tools.get(tool.getDescription());
+        toolDb.setEnvironment(transport.getToEnvironment());
+        toolRepository.save(toolDb);
+      } else {
+        tool.setDescription(tool.getDescription().trim());
+        tool.setEnvironment(transport.getToEnvironment());
+        tool.setAccountGroupId(transport.getAccountGroup().getId());
+        toolRepository.save(tool);
+      }
     });
     transport.getAccounts().forEach(account -> {
       Account accountDb = accountRepository.findById(account.getId()).get();
