@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -40,20 +41,22 @@ public class TransportService {
   }
 
   public Transport add(Transport transport) {
-    Map<String, Tool> tools = toolRepository
+    List<Tool> tools = toolRepository
             .findAllByEnvironment_IdAndAccountGroupId(transport.getFromEnvironment().getId(),
-                    transport.getAccountGroup().getId())
-            .stream().collect(Collectors.toMap(Tool::getDescription, e -> e, (e1, e2) -> e1));
+                    transport.getAccountGroup().getId());
 
     List<Tool> toolsDb = transport.getTools().stream().map(tool -> {
       String description = tool.getDescription().trim();
+      Optional<Tool> optionalTool = tools.stream().filter(t -> t.getDescription().equals(description))
+              .findFirst();
 
-      if (tools.containsKey(description)) {
-        Tool toolDb = tools.get(description);
+      if (optionalTool.isPresent()) {
+        Tool toolDb = optionalTool.get();
         toolDb.setEnvironment(transport.getToEnvironment());
         toolRepository.save(toolDb);
+        tools.remove(toolDb);
         return toolDb;
-      } else if (transport.getFromEnvironment().getId() == 1) {
+      } else if (transport.getFromEnvironment().getId() == 1 && !description.isEmpty()) {
         tool.setDescription(description);
         tool.setEnvironment(transport.getToEnvironment());
         tool.setAccountGroupId(transport.getAccountGroup().getId());
