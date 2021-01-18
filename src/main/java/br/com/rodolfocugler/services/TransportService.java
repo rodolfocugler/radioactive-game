@@ -45,7 +45,7 @@ public class TransportService {
                     transport.getAccountGroup().getId())
             .stream().collect(Collectors.toMap(Tool::getDescription, e -> e));
 
-    transport.getTools().stream().map(tool -> {
+    List<Tool> toolsDb = transport.getTools().stream().map(tool -> {
       String description = tool.getDescription().trim();
 
       if (tools.containsKey(description)) {
@@ -62,6 +62,9 @@ public class TransportService {
       }
       return null;
     }).filter(Objects::nonNull).collect(Collectors.toList());
+
+    transport.setTools(toolsDb);
+
     transport.getAccounts().forEach(account -> {
       Account accountDb = accountRepository.findById(account.getId()).get();
       accountDb.setEnvironment(transport.getToEnvironment());
