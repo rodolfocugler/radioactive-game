@@ -54,8 +54,11 @@ public class ReportService {
             .getByEnvironmentId(null, accountGroupId)));
 
     Map<String, List<QuestionDTO>> questions = environments.stream().collect(Collectors
-            .toMap(Environment::getName, e -> e.getQuestions().stream()
-                    .map(q -> mapToQuestion(q, accountGroupId)).collect(Collectors.toList())
+            .toMap(Environment::getName, e -> {
+                      if (e.getQuestions() == null) return new ArrayList<>();
+                      return e.getQuestions().stream()
+                              .map(q -> mapToQuestion(q, accountGroupId)).collect(Collectors.toList())
+                    }
             ));
 
 
