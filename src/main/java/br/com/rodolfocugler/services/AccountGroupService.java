@@ -32,9 +32,8 @@ public class AccountGroupService {
             .findById(id)
             .orElseThrow(() -> new DataNotFoundException("Group was not found."));
 
-    accountGroup.getAccounts().parallelStream().forEach(account -> {
-      account.getEnvironment().setQuestions(null);
-    });
+    accountGroup.getAccounts().parallelStream().forEach(account -> account.getEnvironment()
+            .setQuestions(null));
     return accountGroup;
   }
 
