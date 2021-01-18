@@ -35,14 +35,6 @@ public class ReportService {
             .collect(Collectors.toMap(Account::getNumber, Account::getName));
     List<Environment> environments = environmentService.get();
 
-    Map<String, List<QuestionDTO>> questions = environments.stream().collect(Collectors
-            .toMap(Environment::getName, e -> {
-                      if (e.getQuestions() == null) return new ArrayList<>();
-                      return e.getQuestions().stream()
-                              .map(q -> mapToQuestion(q, accountGroupId)).collect(Collectors.toList());
-                    }
-            ));
-
     List<Transport> transports = transportService.getByAccountGroupId(accountGroupId);
     transports = transports.subList(2, transports.size());
     List<TransportEventDTO> transportEvents = transports.stream().map(t -> TransportEventDTO
@@ -65,16 +57,26 @@ public class ReportService {
             .accounts(accounts)
             .messages(messages)
             .events(transportEvents)
-            .questions(questions)
             .build();
 
     fillUpTimes(messages, transportEvents, report);
     return report;
   }
 
+  public Map<String, List<QuestionDTO>> getQuestions(long accountGroupId) {
+    List<Environment> environments = environmentService.get();
+    return environments.stream().collect(Collectors
+            .toMap(Environment::getName, e -> {
+                      if (e.getQuestions() == null) return new ArrayList<>();
+                      return e.getQuestions().stream()
+                              .map(q -> mapToQuestion(q, accountGroupId)).collect(Collectors.toList());
+                    }
+            ));
+  }
+
   private QuestionDTO mapToQuestion(Question q, long accountGroupId) {
     List<ResponseDTO> responses = q.getResponses().stream()
-            //.filter(r -> r.getAccount().getAccountGroup().getId() == accountGroupId)
+            .filter(r -> r.getAccount().getAccountGroup().getId() == accountGroupId)
             .map(r -> ResponseDTO.builder().account(r.getAccount().getName())
                     .timestamp(r.getTimestamp()).response(r.getText()).build())
             .collect(Collectors.toList());
