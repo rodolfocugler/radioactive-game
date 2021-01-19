@@ -1,5 +1,47 @@
-{
-  "name": "Lixo Sanitário 1",
-  "description": "",
-  "icon": "Delete"
-}
+[
+  {
+    "environment": {
+      "name": "Lixo Sanitário 1",
+      "description": "<p style=\"text-align: justify;\">No local havia diversas caixas com res&iacute;duos hospitalares. Uma delas tinha informa&ccedil;&otilde;es na embalagem dizendo que existiam <span style=\"text-decoration: underline;\">res&iacute;duos contaminados com Tecn&eacute;cio 99m, is&oacute;topo radiativo utilizado para diagn&oacute;stico m&eacute;dico em Servi&ccedil;os de Medicina Nuclear.</span></p>",
+      "icon": "Delete"
+    },
+    "questions": [
+      {
+        "description": "<p style=\"text-align: justify;\">Qual medida ser&aacute; tomada?</p>\n<p style=\"text-align: justify;\">Caso necess&aacute;rio, pe&ccedil;a informa&ccedil;&otilde;es adicionais.</p>",
+        "environment": {
+          "id": 21
+        }
+      }
+    ]
+  },
+  {
+    "environment": {
+      "name": "Lixo Sanitário 2",
+      "description": "<p style=\"text-align: justify;\">Achado um irradiador de Radioterapia contendo uma c&aacute;psula de C&eacute;sio 137 de 1500 Ci de atividade.</p>\n<p style=\"text-align: justify;\"><span style=\"text-decoration: underline;\">N&atilde;o houve rompimento da blindagem. O material se encontrava intacto.</span></p>",
+      "icon": "Delete"
+    },
+    "questions": [
+      {
+        "description": "<p style=\"text-align: justify;\">Um supervisor analisa a seguinte tabela de doses anuais dos &uacute;ltimos anos de trabalho de 3 IOE:</p>\n<table>\n<tbody>\n<tr>\n<td>mSv</td>\n<td>2011</td>\n<td>2012</td>\n<td>2013</td>\n<td>2014</td>\n<td>2015</td>\n</tr>\n<tr>\n<td>A</td>\n<td>15</td>\n<td>20</td>\n<td>49</td>\n<td>10</td>\n<td>6</td>\n</tr>\n<tr>\n<td>B</td>\n<td>7</td>\n<td>6</td>\n<td>51</td>\n<td>2</td>\n<td>5</td>\n</tr>\n<tr>\n<td>C</td>\n<td>23</td>\n<td>16</td>\n<td>33</td>\n<td>15</td>\n<td>18</td>\n</tr>\n</tbody>\n</table>\n<p style=\"text-align: justify;\">Ele conclui que, em rela&ccedil;&atilde;o ao sistema de limita&ccedil;&atilde;o de dose estabelecido pela norma CNEN-NN-3.01:</p>\n<p style=\"text-align: justify;\">a) A e B ultrapassaram os limites;</p>\n<p style=\"text-align: justify;\">b)A e C ultrapassaram os limites;</p>\n<p style=\"text-align: justify;\">c)A, B e C ultrapassaram os limites;</p>\n<p style=\"text-align: justify;\">d)A e C n&atilde;o ultrapassaram os limites;</p>\n<p style=\"text-align: justify;\">e)B e C ultrapassaram os limites</p>",
+        "environment": {
+          "id": 22
+        }
+      }
+    ]
+  },
+  {
+    "environment": {
+      "name": "Lixo Sanitário 3",
+      "description": "<p style=\"text-align: justify;\"><strong>Achadas ferramentas de emerg&ecirc;ncias, mas antes de retornar a base responda:</strong> </p>",
+      "icon": "Delete"
+    },
+    "questions": [
+      {
+        "description": "<p style=\"text-align: justify;\">Considere os seguintes sintomas e sinais de s&iacute;ndrome de irradia&ccedil;&atilde;o aguda:</p>\n<p style=\"text-align: justify; padding-left: 30px;\">I - desorienta&ccedil;&atilde;o</p>\n<p style=\"text-align: justify; padding-left: 30px;\">II - n&aacute;usea</p>\n<p style=\"text-align: justify; padding-left: 30px;\">III- diarr&eacute;ia</p>\n<p style=\"text-align: justify; padding-left: 30px;\">IV- eritema</p>\n<p style=\"text-align: justify; padding-left: 30px;\">V- debilidade e fadiga</p>\n<p style=\"text-align: justify;\"><strong> Coloque estes sinais e sintomas em ordem aproximada de crescente gravidade</strong></p>",
+        "environment": {
+          "id": 23
+        }
+      }
+    ]
+  }
+]

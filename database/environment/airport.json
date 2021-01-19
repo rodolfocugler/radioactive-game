@@ -1,5 +1,15 @@
 {
-  "name": "Aeroporto",
-  "description": "",
-  "icon": "LocalAirport"
+  "environment": {
+    "name": "Aeroporto",
+    "description": "<p style=\"text-align: justify;\">Aeroporto clandestino - Foram identificados alguns indiv&iacute;duos considerados &ldquo;Terroristas&rdquo; e que estavam ao lado de duas aeronaves na pista do aeroporto.</p>\n<p style=\"text-align: justify;\">Neste momento os terroristas avistam a chegada do carro da equipe?</p>",
+    "icon": "LocalAirport"
+  },
+  "questions": [
+    {
+      "description": "PROVIDÊNCIAS ?!?!\n\nSe necessário, peça informações adicionais.",
+      "environment": {
+        "id": 24
+      }
+    }
+  ]
 }

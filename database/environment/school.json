@@ -1,5 +1,38 @@
-{
-  "name": "Escola 1",
-  "description": "",
-  "icon": "School"
-}
+[
+  {
+    "environment": {
+      "name": "Escola 1",
+      "description": "<p>Imprensa no local</p>\n<p>Explique ao &ldquo;Rep&oacute;rter&rdquo;</p>",
+      "icon": "School"
+    },
+    "questions": [
+      {
+        "description": "<p>1. Assinale a primeira provid&ecirc;ncia a ser tomada em caso de situa&ccedil;&atilde;o de emerg&ecirc;ncia comum equipamento emissor de raios-X:</p>\n<p>a- Diminuir a intensidade de corrente;</p>\n<p>b- Desligar o controle de tempo;</p>\n<p>c- Desligar a fonte de energia el&eacute;trica;</p>\n<p>d- Comunicar o Supervisor de Radioprote&ccedil;&atilde;o;</p>\n<p>e- Abandonar a &aacute;rea de radia&ccedil;&atilde;o rapidamente.</p>",
+        "environment": {
+          "id": 19
+        }
+      }
+    ]
+  },
+  {
+    "environment": {
+      "name": "Escola 2",
+      "description": "<p><strong>Achado um cabe&ccedil;ote de aparelho de raio X intacto</strong></p>\n<p><strong>-------</strong></p>\n<p>ENERGIA NUCLEAR</p>\n<p>Rosa de Hiroxima</p>\n<p>Pensem nas crian&ccedil;as</p>\n<p>Mudas telep&aacute;ticas</p>\n<p>Pensem nas meninas</p>\n<p>Cegas inexatas</p>\n<p>Pensem nas mulheres</p>\n<p>Rotas alteradas</p>\n<p>Pensem nas feridas</p>\n<p>Como rosas c&aacute;lidas</p>\n<p>Mas, oh, n&atilde;o se esque&ccedil;am</p>\n<p>Da rosa da rosa</p>\n<p>Da rosa de Hiroxima</p>\n<p>A rosa heredit&aacute;ria</p>\n<p>A rosa radioativa</p>\n<p>Est&uacute;pida e inv&aacute;lida</p>\n<p>A rosa com cirrose</p>\n<p>A anti-rosa at&ocirc;mica</p>\n<p>Sem cor sem perfume</p>\n<p>Sem rosa sem nada</p>\n<p>(Vin&iacute;cius de Moraes)</p>",
+      "icon": "School"
+    },
+    "questions": [
+      {
+        "description": "<p>1. Pessoas correndo para pegar suas crian&ccedil;as. Diretora da Escola preocupada com o aparelho de RX, pois disseram que estava vazando radia&ccedil;&atilde;o por toda Piracicaba... Quais orienta&ccedil;&otilde;es a equipe passam &agrave; Dire&ccedil;&atilde;o da Escola?</p>",
+        "environment": {
+          "id": 20
+        }
+      },
+      {
+        "description": "<p style=\"text-align: justify;\">2. O poema refere-se &agrave; Rosa de Hiroxima como &ldquo;radioativa, est&uacute;pida, inv&aacute;lida&rdquo;, destacando os efeitos nocivos da radioatividade, um dos subprodutos da energia nuclear e que pode vazar para o ambiente atrav&eacute;s do lixo at&ocirc;mico ou por acidentes, como o que ocorreu na usina nuclear de Chernobyl, na Ucr&acirc;nia. Entre as vantagens da energia nuclear, que compensam os perigos de poss&iacute;veis acidentes, destacam-se:</p>\n<p style=\"text-align: justify;\">a) o fato de ser renov&aacute;vel, n&atilde;o causar grandes impactos ambientais, como as hidrel&eacute;tricas, e n&atilde;o ser fonte de conflitos entre pa&iacute;ses, pois n&atilde;o &eacute; uma fonte finita.</p>\n<p style=\"text-align: justify;\">b) a presen&ccedil;a, na gera&ccedil;&atilde;o de energia, tanto de capitais privados como estatais, pois as usinas nucleares s&atilde;o investimentos de baixo custo e retorno r&aacute;pido.</p>\n<p style=\"text-align: justify;\">c) o combust&iacute;vel (ur&acirc;nio enriquecido) &eacute; relativamente barato, a gera&ccedil;&atilde;o de res&iacute;duos &eacute; pequena e n&atilde;o h&aacute; gera&ccedil;&atilde;o de gases que intensificam o efeito estufa.</p>\n<p style=\"text-align: justify;\">d) a abund&acirc;ncia do combust&iacute;vel (ur&acirc;nio) em todo o mundo, o baixo custo de implanta&ccedil;&atilde;o de usinas nucleares e a tecnologia acess&iacute;vel aos pa&iacute;ses pobres.</p>\n<p style=\"text-align: justify;\">e) o controle internacional sobre a gera&ccedil;&atilde;o de energia nuclear e a legisla&ccedil;&atilde;o ambiental r&iacute;gida, que restringem a constru&ccedil;&atilde;o de usinas pelos pa&iacute;ses que n&atilde;o seguem as normas.</p>",
+        "environment": {
+          "id": 20
+        }
+      }
+    ]
+  }
+]

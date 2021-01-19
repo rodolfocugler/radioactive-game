@@ -1,5 +1,91 @@
-{
-  "name": "Indústria 1",
-  "description": "",
-  "icon": "Business"
-}
+[
+  {
+    "environment": {
+      "name": "Indústria 1",
+      "description": "Nada de anormal do ponto de vista de Radioproteção.",
+      "icon": "Business"
+    },
+    "questions": [
+      {
+        "description": "1. Tudo normal por aqui, porém explique para os populares a diferença entre contaminação e radiação",
+        "environment": {
+          "id": 3
+        }
+      }
+    ]
+  },
+  {
+    "environment": {
+      "name": "Indústria 2",
+      "description": "<p style=\"text-align: justify;\">\n    <meta charset=\"utf-8\">\n    <meta charset=\"utf-8\">\n    <meta charset=\"utf-8\">- Ve&iacute;culo oficial da CNEN chegando na cidade e pedindo informa&ccedil;&otilde;es a populares. Por sorte encontram Viatura da Empresa no local e pedem que retornem &agrave; Sede imediatamente, pois estavam perdidos na cidade e precisam se reunir com o Titular &ndash; Respons&aacute;vel Legal (L&iacute;der do Grupo).</p>\n<p style=\"text-align: justify;\">\n    <meta charset=\"utf-8\"><strong>Dados:</strong></p>\n<p style=\"text-align: justify;\">Ci = 3,7 x 1010 Bq </p>\n<p style=\"text-align: justify;\">&#9121; = 0,13 mSvh a 1 metro por GBq </p>\n<p style=\"text-align: justify;\">Operador 1</p>\n<p style=\"text-align: justify;\"> Dist&acirc;ncia fonte &ndash; dos&iacute;metro: 50 cm tempo de exposi&ccedil;&atilde;o m&aacute;xima: 5,0 min. </p>\n<p style=\"text-align: justify;\">Operador 2 </p>\n<p style=\"text-align: justify;\">Dist&acirc;ncia fonte &ndash; dos&iacute;metro: 1,5 m tempo de exposi&ccedil;&atilde;o m&aacute;xima: 30 seg. </p>\n<p style=\"text-align: justify;\"><br></p>\n<p style=\"text-align: justify;\">O cabo de comando rompeu deixando a fonte radioativa livre no tubo guia, durante a &uacute;ltima exposi&ccedil;&atilde;o.</p>\n<p style=\"text-align: justify;\"> Ap&oacute;s as exposi&ccedil;&otilde;es em altura, o operador 1 a fim de encerrar as atividades do dia, recolheu o material, desconectando do irradiador o telecomando e desceu o andaime com o tubo guia envolto no pesco&ccedil;o (ver foto anexa). </p>\n<p style=\"text-align: justify;\">O Operador 2 estava fazendo revela&ccedil;&atilde;o de filmes e ao retornar na &aacute;rea de gamagrafia se deparou com o Operador 1. O Operador 2 detectou que a fonte radioativa n&atilde;o estava no irradiador&rdquo;. </p>\n<p style=\"text-align: center;\"><strong>Observa&ccedil;&atilde;o: No nosso exerc&iacute;cio desprezaremos as doses nas g&ocirc;nodas do funcion&aacute;rio, assim como sua dose efetiva<br></strong></p>\n<p style=\"text-align: justify;\"><br></p>\n<img src=\"image-env-b2.png\" width=\"400px\" />",
+      "icon": "Business"
+    },
+    "questions": [
+      {
+        "description": "1. Quais providências devem ser tomadas neste caso com relação a este Operador 1?",
+        "environment": {
+          "id": 4
+        }
+      },
+      {
+        "description": "2. Quais as providências “INICIAIS” devem ser realizadas pela equipe de Supervisores?",
+        "environment": {
+          "id": 4
+        }
+      }
+    ]
+  },
+  {
+    "environment": {
+      "name": "Indústria 3",
+      "description": "<p style=\"text-align: center;\">\n<strong><span style=\"font-size: 20px;\">\nOcorr&ecirc;ncia envolvendo fonte radioativa de Ir &ndash; 192 de 75 Ci</span></strong></p>\n<p style=\"text-align: center;\"><strong><span style=\"font-size: 20px;\">Caso necess&aacute;rio, pe&ccedil;a aux&iacute;lio para outro membro do grupo que esteja na base.</span></strong></p>\n<p><br></p>\n<p>1- Como ocorreu o incidente</p>\n<p>1.1- Tipo de radionuc&iacute;deo</p>\n<p style=\"margin-left: 20px;\">Fonte de Ir-192, fornecida pela CNEN/IPEN, n&uacute;mero de s&eacute;rie Irs &ndash; 669</p>\n<p>1.2- Atividade</p>\n<p style=\"margin-left: 20px;\">Atividade da fonte quando da ocorr&ecirc;ncia era de 75 Ci</p>\n<p>1.3 Equipamento utilizado</p>\n<p style=\"margin-left: 20px;\">- Irradiador n&uacute;mero de s&eacute;rie ABCD, certificado de vistoria n&uacute;mero 1234/2017 de validade at&eacute; 01 de fevereiro de 2019.</p>\n<p style=\"margin-left: 20px;\">- Comando de s&eacute;rie 5678</p>\n<p style=\"margin-left: 20px;\">- Detector Geiger-Muller Victoreen, n&uacute;mero s&eacute;rie 2424, certificado de calibra&ccedil;&atilde;o n&uacute;mero XXX de validade at&eacute; fevereiro de 2019</p>\n<p style=\"margin-left: 20px;\">- Placas de Pb: 4 calhas de espessuras 1&rdquo;</p>\n<p style=\"margin-left: 20px;\">- Colimador com abertura de 60 graus em &acirc;ngulo c&ocirc;nico</p>\n<p><br></p>\n<p>2- Hist&oacute;rico</p>\n<p style=\"margin-left: 20px;\">- <strong>&Agrave;s 09:00 horas do dia 04/05/2019</strong>, o operador <strong>Sr AAAA BBBB</strong>. ap&oacute;s efetuar a terceira exposi&ccedil;&atilde;o, em uma tubula&ccedil;&atilde;o de G&aacute;s Natural que estava sendo constru&iacute;da pela Construtora &ldquo;VIVA O XV&rdquo; verificou que a fonte n&atilde;o retornava &agrave; posi&ccedil;&atilde;o de blindagem. Ap&oacute;s tr&ecirc;s tentativas, expondo e recolhendo o cabo de comando conclu&iacute;ram que a fonte havia se desconectado.</p>\n<p style=\"margin-left: 20px;\">- Com ajuda do detector Geiger-Muller, o operador e seus auxiliares verificaram que a fonte estava alojada no colimador. Ap&oacute;s isso, puxouse a mangueira para fora da vala, e mantendo a fonte no colimador, foram colocadas 5 placas de Pb.</p>",
+      "icon": "Business"
+    },
+    "questions": []
+  },
+  {
+    "environment": {
+      "name": "Indústria 4",
+      "description": "<p style=\"text-align: justify;\">\n    <meta charset=\"utf-8\">Medidor Nuclear com Cs-137 (tudo normal por aqui)</p>\n<p style=\"text-align: justify;\">Explique ao &ldquo;Rep&oacute;rter&rdquo;</p>",
+      "icon": "Business"
+    },
+    "questions": [
+      {
+        "description": "<p style=\"text-align: justify;\">1. Se um indiv&iacute;duo receber uma alta dose de radia&ccedil;&atilde;o num curto espa&ccedil;o de tempo, teremos o aparecimento de um conjunto de sinais e sintomas denominado de &ldquo;S&iacute;ndrome da Irradia&ccedil;&atilde;o Aguda&rdquo;. Qual a seq&uuml;&ecirc;ncia correta de &oacute;rg&atilde;os afetados com rela&ccedil;&atilde;o a doses crescentes de radia&ccedil;&atilde;o?</p>\n<p><u><strong>VEJA ABREVIATURAS NO ITEM a</strong></u><strong>&nbsp;</strong></p>\n<p><strong>a) S&iacute;ndrome da medula &oacute;ssea (SMO);&nbsp;</strong></p>\n<p><strong>s&iacute;ndrome do trato gastro-intestinal (TGI);</strong></p>\n<p><strong>&nbsp;s&iacute;ndrome do sistema nervoso central (SNC);&nbsp;</strong></p>\n<p><strong>b) TGI; SMO; SNC;</strong></p>\n<p><strong>c) SNC; TGI; SMO;</strong></p>\n<p><strong>d) SNC; SMO; TGI;&nbsp;</strong></p>\n<p><strong>e) SMO; SNC; TGI. OBS.</strong></p>\n<p>Somente uma alternativa &eacute; correta.</p>",
+        "environment": {
+          "id": 6
+        }
+      }
+    ]
+  },
+  {
+    "environment": {
+      "name": "Indústria 5",
+      "description": "<p style=\"text-align: justify;\">\n    <meta charset=\"utf-8\">Descobriu-se que os operadores que iriam trabalhar com Fonte Ir-192 com 30 Ci, estavam amarrados e a fonte radiativa n&atilde;o estava mais neste local. Como os operadores estavam debilitados, deveriam ser encaminhados ao atendimento m&eacute;dico (Pronto Socorro) e n&atilde;o deram mais nenhuma informa&ccedil;&atilde;o adicional.</p>",
+      "icon": "Business"
+    },
+    "questions": [
+      {
+        "description": "<p style=\"text-align: justify;\">\n    <meta charset=\"utf-8\">1. Chegando neste local, quais solicita&ccedil;&otilde;es voc&ecirc; deixaria com respons&aacute;veis da empresa? A&ccedil;&otilde;es de prote&ccedil;&atilde;o radiol&oacute;gica voc&ecirc; faria?</p>",
+        "environment": {
+          "id": 7
+        }
+      }
+    ]
+  },
+  {
+    "environment": {
+      "name": "Indústria 6",
+      "description": "<p style=\"text-align: justify;\">TUDO NORMAL POR AQUI!!!!!</p>",
+      "icon": "Business"
+    },
+    "questions": [
+      {
+        "description": "<p style=\"text-align: justify;\">\n    <meta charset=\"utf-8\">1. A calibra&ccedil;&atilde;o dos monitores port&aacute;teis de radia&ccedil;&atilde;o por institui&ccedil;&atilde;o credenciada deve ser realizada:</p>\n<p style=\"text-align: justify;\"> a- Diariamente, antes de cada servi&ccedil;o de radiografia industrial; </p>\n<p style=\"text-align: justify;\">b- Mensalmente pelo Operador 2 qualificado da empresa; </p>\n<p style=\"text-align: justify;\">c- A cada seis meses de uso em instala&ccedil;&otilde;es abertas; </p>\n<p style=\"text-align: justify;\">d- Anualmente e ap&oacute;s manuten&ccedil;&atilde;o; </p>\n<p style=\"text-align: justify;\">e- As alternativas a e d est&atilde;o corretas.</p>",
+        "environment": {
+          "id": 8
+        }
+      }
+    ]
+  }
+]

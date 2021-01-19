@@ -1,5 +1,32 @@
-{
-  "name": "Ferro Velho 1",
-  "description": "",
-  "icon": "Polymer"
-}
+[
+  {
+    "environment": {
+      "name": "Ferro Velho 1",
+      "description": "<p style=\"text-align: justify;\">\n    <meta charset=\"utf-8\">Nada de anormal do ponto de vista de Radioprote&ccedil;&atilde;o.</p>\n<p style=\"text-align: justify;\"> No local h&aacute; Imprensa - Jornal Voz do Povo de Piracicaba. </p>\n<p style=\"text-align: justify;\">A equipe deve explicar neste ponto ao &ldquo;Rep&oacute;rter&rdquo; a quest&atilde;o abaixo.</p>",
+      "icon": "Polymer"
+    },
+    "questions": [
+      {
+        "description": "<p style=\"text-align: justify;\">\n    <meta charset=\"utf-8\">1. Calcule a espessura da blindagem para atenuar a intensidade de radia&ccedil;&atilde;o de 5 rem/h para 2,5 mrem/h. </p>\n<p style=\"text-align: justify;\">Dado: &micro;= 0,132 cm &ndash;1 de material absorvedor</p>",
+        "environment": {
+          "id": 14
+        }
+      }
+    ]
+  },
+  {
+    "environment": {
+      "name": "Ferro Velho 2",
+      "description": "<p style=\"text-align: center;\">\n    <meta charset=\"utf-8\">\n    <meta charset=\"utf-8\"><strong><span style=\"font-size: 18px;\">Ocorr&ecirc;ncia envolvendo fonte radioativa de Ir &ndash; 192 de 30 Ci</span></strong></p>\n<p style=\"text-align: center;\"><strong><span style=\"font-size: 18px;\">Caso necess&aacute;rio, pe&ccedil;a aux&iacute;lio para outro membro do grupo que esteja na base.</span></strong></p>\n<p style=\"text-align: justify;\"><br></p>\n<p style=\"text-align: justify;\"><em>Esta fonte foi localizada neste Ferro Velho, mas como continha dizeres de &ldquo;material radioativo&rdquo;, foi acionado os bombeiros. Por sorte, esta equipe de experientes Supervisores de Radioprote&ccedil;&atilde;o chegou a tempo de resolver a situa&ccedil;&atilde;o.</em></p>\n<p style=\"text-align: justify;\"><br></p>\n<p style=\"text-align: justify;\"><strong>Dados:</strong></p>\n<p style=\"text-align: justify;\">1.1- Fonte de Ir-192</p>\n<p style=\"text-align: justify;\">1.2- Atividade 30 Ci</p>\n<p style=\"text-align: justify;\">1.3- Equipamento achado - Irradiador n&uacute;mero de s&eacute;rie ABCD, certificado de vistoria n&uacute;mero 1234/2019 com validade at&eacute; mar&ccedil;o de 2020.</p>\n<p style=\"text-align: justify;\">1.4- &Agrave;s 7:40 horas do dia 04/05/2019, o servi&ccedil;o de radiografia industrial foi assaltado e os operadores de radiografia ficaram amarrados, nada podendo fazer nada com a situa&ccedil;&atilde;o.</p>\n<p style=\"text-align: justify;\">1.5- Como o material tinha estampado descri&ccedil;&atilde;o de &ldquo;Material Radioativo&rdquo;, foi deixado no Ferro Velho &ldquo;propositalmente&rdquo;.</p>\n<p style=\"text-align: justify;\">1.6- Esta equipe chegou ao local e deseja fazer um isolamento da &aacute;rea</p>\n<p style=\"text-align: justify;\">1.7- Calcule a espessura de chumbo necess&aacute;ria para reduzir a taxa de exposi&ccedil;&atilde;o a 2 metros de uma fonte de Ir-1920 de 30 Ci para 2,5 mR/h , desprezando-se o fator de build-up</p>\n<p style=\"text-align: justify;\">1.8- Dados importantes: &micro; chumbo = 0,646 cm-1 ⎡ = 0,48 R.m2 / h.Ci</p>",
+      "icon": "Polymer"
+    },
+    "questions": [
+      {
+        "description": "<p style=\"text-align: justify;\">1. A situa&ccedil;&atilde;o encontrada pela equipe de resgate que chegou ao local &agrave;s XXXX. Estava sem isolamento de &aacute;rea. Qual a dist&acirc;ncia de seguran&ccedil;a recomendada?</p>",
+        "environment": {
+          "id": 15
+        }
+      }
+    ]
+  }
+]

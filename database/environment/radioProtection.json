@@ -1,5 +1,15 @@
 {
-  "name": "Escritório de Radioproteção",
-  "description": "",
-  "icon": "BusinessCenter"
+  "environment": {
+    "name": "Escritório de Radioproteção",
+    "description": "<p>Imprensa no local</p>\n<p>Exlique ao &ldquo;Rep&oacute;rter&rdquo;</p>\n<p style=\"text-align: center;\"><strong>INFORMA&Ccedil;&Acirc;O: As fontes foram entregues nas ind&uacute;strias, mas uma das fontes (Ir &ndash;192 de 30 Ci) est&aacute; no Ferro Velho com certeza </strong></p>\n<p style=\"text-align: center;\"><strong>Descubra como isso aconteceu</strong></p>",
+    "icon": "BusinessCenter"
+  },
+  "questions": [
+    {
+      "description": "<p>1.&nbsp;Transforme 50 Ci em Bq.</p>",
+      "environment": {
+        "id": 18
+      }
+    }
+  ]
 }

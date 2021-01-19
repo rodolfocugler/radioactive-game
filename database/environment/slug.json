@@ -1,5 +1,53 @@
-{
-  "name": "Favela 1",
-  "description": "",
-  "icon": "LocationCity"
-}
+[
+  {
+    "environment": {
+      "name": "Favela 1",
+      "description": "<p style=\"text-align: justify;\">Polícia Federal na Favela, a procura de TERRORISTAS, porém nada foi achado de anormal do ponto de vista de Radioproteção</p>",
+      "icon": "LocationCity"
+    },
+    "questions": [
+      {
+        "description": "<p style=\"text-align: justify;\">\n<meta charset=\"utf-8\">Providências???</p>",
+        "environment": {
+          "id": 11
+        }
+      }
+    ]
+  },
+  {
+    "environment": {
+      "name": "Favela 2",
+      "description": "<p style=\"text-align: justify;\">Indivíduos informam que tem fonte radiativa na Indústria e estão pedindo socorro por lá...</p>",
+      "icon": "LocationCity"
+    },
+    "questions": [
+      {
+        "description": "<p style=\"text-align: justify;\">\n<meta charset=\"utf-8\">1.  Chegando neste local, quais ações de proteção radiológica você faria?</p>",
+        "environment": {
+          "id": 12
+        }
+      }
+    ]
+  },
+  {
+    "environment": {
+      "name": "Favela 3",
+      "description": "<p style=\"text-align: justify;\">\n    <meta charset=\"utf-8\">TUDO NORMAL POR AQUI, MAS... </p>\n<p style=\"text-align: justify;\">RESPONDA </p>\n<p style=\"text-align: justify;\">Uma empresa de presta&ccedil;&atilde;o de servi&ccedil;os foi contratada para executar servi&ccedil;o em instala&ccedil;&atilde;o aberta. </p>\n<p style=\"text-align: justify;\">Voc&ecirc;, como SPR, deve definir uma &aacute;rea para armazenamento provis&oacute;rio de fontes. </p>\n<p style=\"text-align: justify;\">Defina os crit&eacute;rios para escolha do local e os cuidados a tomar para a prote&ccedil;&atilde;o radiol&oacute;gica</p>",
+      "icon": "LocationCity"
+    },
+    "questions": [
+      {
+        "description": "1. Quais os aspectos que você levaria em consideração para determinar o local de construção do armazenamento temporário?",
+        "environment": {
+          "id": 13
+        }
+      },
+      {
+        "description": "2. Cite pelo menos 3 aspectos de radioproteção que devem constar no local de armazenamento temporário.",
+        "environment": {
+          "id": 13
+        }
+      }
+    ]
+  }
+]

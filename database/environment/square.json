@@ -1,5 +1,25 @@
-{
-  "name": "Praça 1",
-  "description": "",
-  "icon": "Room"
-}
+[
+  {
+    "environment": {
+      "name": "Praça 1",
+      "description": "<p style=\"text-align: justify;\">Nada de anormal do ponto de vista de Radioprote&ccedil;&atilde;o</p>\n<p style=\"text-align: justify;\">No local h&aacute; Imprensa - TV Globo em edi&ccedil;&atilde;o extraordin&aacute;ria.</p>\n<p style=\"text-align: justify;\">EXPLIQUE ao Rep&oacute;rter:</p>\n<p style=\"text-align: justify;\">Uma equipe constitu&iacute;da por tr&ecirc;s pessoas, realizada ensaios de gamagrafia com uma fonte de Ir&iacute;dio-192 com 400GBq (~10Ci), quando ao final de uma radiografia panor&acirc;mica de solda o operador acionou o controle para recolher a fonte e a mesma n&atilde;o retornou &agrave; blindagem. A opera&ccedil;&atilde;o de resgate da fonte foi realizado em 4 etapas, descritas a seguir:</p>\n<p style=\"text-align: justify;\">(⎡<sup>Ir-192</sup>= 0,13mSv.h<sup>-1&nbsp;</sup> a 1 metro por GBq)</p>\n<p style=\"text-align: justify;\">&nbsp;</p>\n<table>\n<tbody>\n<tr>\n<td style=\"text-align: center;\">Etapa</td>\n<td style=\"text-align: center;\">Operador</td>\n<td style=\"text-align: center;\">Tempo (min)</td>\n<td style=\"text-align: center;\">Dist&acirc;ncia (m)</td>\n</tr>\n<tr>\n<td style=\"text-align: center;\">1</td>\n<td style=\"text-align: center;\">1</td>\n<td style=\"text-align: center;\">1,5</td>\n<td style=\"text-align: center;\">1</td>\n</tr>\n<tr>\n<td style=\"text-align: center;\">2</td>\n<td style=\"text-align: center;\">2</td>\n<td style=\"text-align: center;\">3</td>\n<td style=\"text-align: center;\">2</td>\n</tr>\n<tr>\n<td style=\"text-align: center;\">3</td>\n<td style=\"text-align: center;\">3</td>\n<td style=\"text-align: center;\">1</td>\n<td style=\"text-align: center;\">1</td>\n</tr>\n<tr>\n<td style=\"text-align: center;\">4</td>\n<td style=\"text-align: center;\">1</td>\n<td style=\"text-align: center;\">1</td>\n<td style=\"text-align: center;\">1</td>\n</tr>\n</tbody>\n</table>",
+      "icon": "Room"
+    },
+    "questions": [
+      {
+        "description": "<p>1. Calcule a estimativa de doses para os operadores 1, 2 e 3 respectivamente.</p>\n<p style=\"text-align: justify;\">a) 140 mSv, 36 mSv e 52 mSv</p>\n<p style=\"text-align: justify;\">b) 220 mSv, 65 mSv e 90 mSv</p>\n<p style=\"text-align: justify;\">c) 104 mSv, 13 mSv e 52 mSv</p>\n<p style=\"text-align: justify;\">d) 1,3 mSv, 1,8 mSv e 0,9 mSv</p>\n<p style=\"text-align: justify;\">e) 2,2 mSv, 0,7 mSv e 0,9 mSv</p>\n<p style=\"text-align: justify;\"><br /><br /></p>",
+        "environment": {
+          "id": 16
+        }
+      }
+    ]
+  },
+  {
+    "environment": {
+      "name": "Praça 2",
+      "description": "<p>Achado Medidor Nuclear ( Kr-85)</p>\n<p>Nada de anormal do ponto de vista de Radioprote&ccedil;&atilde;o. </p>",
+      "icon": "Room"
+    },
+    "questions": []
+  }
+]

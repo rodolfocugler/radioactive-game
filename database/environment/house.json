@@ -1,5 +1,32 @@
-{
-  "name": "Residência 1",
-  "description": "",
-  "icon": "House"
-}
+[
+  {
+    "environment": {
+      "name": "Residência 1",
+      "description": "<p style=\"text-align: justify;\">Tudo normal por aqui!!!!</p>",
+      "icon": "House"
+    },
+    "questions": [
+      {
+        "description": "<p style=\"text-align: justify;\">\n<meta charset=\"utf-8\">Ah, responda: </p>\n<p style=\"text-align: justify;\">1. Considerando que a meia vida do cobalto-60 &eacute; de aproximadamente 5 anos, e que a sua constante espec&iacute;fica da radia&ccedil;&atilde;o gama &eacute; 1,32 R.m2 / Ci.h, o valor da taxa de exposi&ccedil;&atilde;o a 3 metros para uma fonte com atividade inicial de 100 Ci (3,7 TBq), ap&oacute;s 30 anos, &eacute; igual a: </p>\n<p style=\"text-align: justify;\">(a)0,052 R/h </p>\n<p style=\"text-align: justify;\">(b)0,073 R/h </p>\n<p style=\"text-align: justify;\">(c) 0,122 R/h </p>\n<p style=\"text-align: justify;\">(d)0,229 R/h </p>\n<p style=\"text-align: justify;\">(e) 0,345 R/h </p>\n<p style=\"text-align: justify;\"><strong><span style=\"font-size: 18px;\">INFORMA&Ccedil;&Acirc;O: Indiv&iacute;duos relatam que tem fonte radiativa na Ind&uacute;stria e est&atilde;o pedindo socorro por l&aacute;...</span></strong></p>",
+        "environment": {
+          "id": 9
+        }
+      }
+    ]
+  },
+  {
+    "environment": {
+      "name": "Residência 2",
+      "description": "<p style=\"text-align: justify;\">Algumas crianças brincam com um pó de cor azul</p>",
+      "icon": "House"
+    },
+    "questions": [
+      {
+        "description": "<p style=\"text-align: justify;\">\n<meta charset=\"utf-8\">1. Qual providência a equipe toma?</p>",
+        "environment": {
+          "id": 10
+        }
+      }
+    ]
+  }
+]
