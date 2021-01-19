@@ -38,7 +38,10 @@ public class AccountGroupService {
   }
 
   public List<AccountGroup> get() {
-    return groupRepository.findAll();
+    List<AccountGroup> accountGroups = groupRepository.findAll();
+    accountGroups.forEach(accountGroup -> accountGroup.getAccounts().parallelStream()
+            .forEach(account -> account.getEnvironment().setQuestions(null)));
+    return accountGroups;
   }
 
   public AccountGroup add(AccountGroup accountGroup) {
