@@ -18,7 +18,7 @@ public class Question {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id = 0;
 
-  @Column(nullable = false, length=1024)
+  @Column(nullable = false, length=2048)
   private String description;
 
   @ManyToOne
