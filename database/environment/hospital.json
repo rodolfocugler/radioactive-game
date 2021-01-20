@@ -3,7 +3,7 @@
     "name": "Hospital",
     "description": "<p style=\"text-align: justify;\"><strong>Informa&ccedil;&atilde;o: Vigil&acirc;ncia Sanit&aacute;ria est&aacute; no local e procuram informa&ccedil;&otilde;es por Res&iacute;duos Radioativos de Tc-99m (Tecn&eacute;cio) usados em Servi&ccedil;os de Medicina Nuclear.</strong></p>",
     "icon": "LocalHospital"
-  },,
+  },
   "questions": [
     {
       "description": "<p style=\"text-align: justify;\">Chegando ao local de trabalho um operador de radiografia percebeu que n&atilde;o portava seu dos&iacute;metro. O que ele deveria fazer?</p>\n<p style=\"text-align: justify;\">a- Ir buscar o seu dos&iacute;metro individual, mesmo que isto retarde os trabalhos daquele dia.</p>\n<p style=\"text-align: justify;\">b- Ir buscar uma caneta dosim&eacute;trica para usar durante sua jornada de trabalho;</p>\n<p style=\"text-align: justify;\">c- Iniciar os trabalhos de radiografia e em seguida comunicar o fato ao Operador 2</p>\n<p style=\"text-align: justify;\">d- Iniciar os trabalhos de radiografia e registrar o ocorrido para conhecimento do Supervisor de Radioprote&ccedil;&atilde;o</p>\n<p style=\"text-align: justify;\">e- Iniciar os trabalhos de radiografia sem dar import&acirc;ncia ao fato</p>",

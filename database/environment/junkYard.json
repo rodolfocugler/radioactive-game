@@ -22,7 +22,7 @@
     },
     "questions": [
       {
-        "description": "<p style=\"text-align: justify;\">1. A situa&ccedil;&atilde;o encontrada pela equipe de resgate que chegou ao local &agrave;s XXXX. Estava sem isolamento de &aacute;rea. Qual a dist&acirc;ncia de seguran&ccedil;a recomendada?</p>",
+        "description": "<p style=\"text-align: justify;\">1. A situa&ccedil;&atilde;o encontrada pela equipe de resgate que chegou ao local. Estava sem isolamento de &aacute;rea. Qual a dist&acirc;ncia de seguran&ccedil;a recomendada?</p>",
         "environment": {
           "id": 15
         }
