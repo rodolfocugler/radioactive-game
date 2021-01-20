@@ -1,7 +1,6 @@
 package br.com.rodolfocugler.services;
 
 import br.com.rodolfocugler.domains.Account;
-import br.com.rodolfocugler.domains.Environment;
 import br.com.rodolfocugler.exceptions.DataNotFoundException;
 import br.com.rodolfocugler.repositories.AccountRepository;
 import org.springframework.security.core.userdetails.User;
@@ -34,7 +33,12 @@ public class AccountService implements UserDetailsService {
   }
 
   public List<Account> get() {
-    return accountRepository.findAll();
+    List<Account> accounts = accountRepository.findAll();
+    accounts.parallelStream().forEach(account -> {
+      account.setEnvironment(null);
+      account.setResponses(null);
+    });
+    return accounts;
   }
 
   public Account add(Account account) {
