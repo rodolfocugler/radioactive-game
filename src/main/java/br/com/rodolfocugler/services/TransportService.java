@@ -10,7 +10,6 @@ import br.com.rodolfocugler.repositories.TransportRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -85,11 +84,12 @@ public class TransportService {
   }
 
   private void removeFields(Transport transport) {
-    transport.getAccounts().parallelStream().forEach(account ->
-            account.getEnvironment().setQuestions(null));
-    transport.getAccountGroup().setAccounts(null);
-    transport.getFromEnvironment().setQuestions(null);
-    transport.getToEnvironment().setQuestions(null);
+    transport.getAccounts().parallelStream().forEach(account -> {
+      if (account.getEnvironment() != null) account.getEnvironment().setQuestions(null);
+    });
+    if (transport.getAccountGroup() != null) transport.getAccountGroup().setAccounts(null);
+    if (transport.getFromEnvironment() != null) transport.getFromEnvironment().setQuestions(null);
+    if (transport.getToEnvironment() != null) transport.getToEnvironment().setQuestions(null);
   }
 
   public List<Transport> getByAccountGroupId(long accountGroupId) {
