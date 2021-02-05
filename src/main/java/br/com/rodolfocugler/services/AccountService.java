@@ -43,6 +43,8 @@ public class AccountService implements UserDetailsService {
 
   public Account add(Account account) {
     account.setLeader(false);
+    account.setNumber(account.getNumber().trim());
+    account.setEmail(account.getEmail().trim());
     account.setPassword(bCryptPasswordEncoder.encode(account.getNumber() + "@2021"));
     accountRepository.save(account);
     return account;
@@ -63,10 +65,10 @@ public class AccountService implements UserDetailsService {
 
   @Override
   public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-    Account account = accountRepository.findByEmail(email);
+    Account account = accountRepository.findByEmail(email.trim());
 
     if (account == null) {
-      throw new UsernameNotFoundException(email);
+      throw new UsernameNotFoundException(email.trim());
     }
 
     StringBuilder sb = new StringBuilder();
