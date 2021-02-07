@@ -38,10 +38,11 @@ public class ReportService {
     List<Transport> transports = transportService.getByAccountGroupId(accountGroupId);
     transports = transports.subList(2, transports.size());
     List<TransportEventDTO> transportEvents = transports.stream().map(t -> TransportEventDTO
-            .builder().timestamp(t.getTimestamp()).accounts(new ArrayList<>(accounts.values()))
+            .builder().timestamp(t.getTimestamp()).accounts(t.getAccounts().stream()
+                    .map(Account::getName).collect(Collectors.toList()))
             .from(t.getFromEnvironment().getName()).to(t.getToEnvironment().getName())
             .tools(t.getTools().stream().map(Tool::getDescription).collect(Collectors.toList()))
-            .build()).collect(Collectors.toList());
+            .carIndex(t.getCarIndex()).build()).collect(Collectors.toList());
 
     Map<String, List<ChatDTO>> messages = environments.stream().collect(Collectors
             .toMap(Environment::getName, e -> {

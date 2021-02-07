@@ -12,6 +12,7 @@ import java.util.List;
 public class TransportEventDTO extends EventDTO {
   private String from;
   private String to;
+  private int carIndex;
   private List<String> accounts;
   private List<String> tools;
   private long timestamp;
